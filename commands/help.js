@@ -1,6 +1,7 @@
 require('dotenv').config();
 const ms = require('ms');
 let commandTimeout = {};
+let timerStart = false;
 module.exports = {
     name: 'help',
     description: 'On help command, the bot will send message that asking the user to wait for 10 minutes.',
@@ -26,12 +27,14 @@ module.exports = {
                 setTimeout(function () {
                     member.roles.remove(waitingRole.id);
                 }, ms('10s'))
-                if (commandTimeout[message.author.id]) {
-                    commandTimeout[message.author.id] = false;
-                    setTimeout(() => {
-                        message.channel.setParent(process.env.FREE_TO_HELP);
-                    }, ms('20s'))
-                }
+                // if (commandTimeout[message.author.id]) {
+                //     commandTimeout[message.author.id] = false;
+                //     setTimeout(() => {
+                //         message.channel.setParent(process.env.FREE_TO_HELP);
+                //     }, ms('20s'))
+                // }
+                
+
                 return
             }
         } else return message.reply('Please do check where you are asking. Go to Rulese section and know how to ask help.');
