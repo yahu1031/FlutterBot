@@ -1,0 +1,22 @@
+{
+  "name": "flutter-bot",
+  "version": "0.0.1",
+  "description": "A Flutter Discord bot created with Discord.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: No test specified\" && exit 1",
+    "start": "node ./main.js",
+    "dev": "nodemon ./main.js"
+  },
+  "author": "minnu",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "discord.js-docs": "^0.1.2",
+    "dotenv": "^8.2.0",
+    "fs": "0.0.1-security",
+    "ms": "^2.1.2",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.4"
+  }
+}

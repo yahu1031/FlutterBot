@@ -1,0 +1,13 @@
+{
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 100,
+    "editor.formatOnPaste": true,
+    "editor.fontSize": 16,
+    "editor.formatOnType": true,
+    "editor.fontLigatures": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.fixAll.eslint": false
+    }
+}
