@@ -1,106 +1,84 @@
-//! Import required modules/packages
+//! Import required modules/packages.
 require('dotenv').config();
 
 const fs = require('fs');
 const Discord = require('discord.js');
-const ms = require('ms');
-
 const bot = new Discord.Client();
-let commandTimeout = {};
+const prefix = process.env.PREFIX;
 
-//! Reading command files dynamically
+//! Checks for a numerics in the String.
+let hasNumber = /\d/;
+
+//! Reading command files dynamically.
 bot.commands = new Discord.Collection();
-//! Retrieving all command files 
+//! Retrieving all command files.
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-//! Dynamically setting commands to the Collection
+//! Dynamically setting commands to the Collection.
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     bot.commands.set(command.name, command);
 }
 
-async function checkActivity(bot) {
-    const botGuilds = bot.guilds.cache;
-    // loop through the guilds
-    botGuilds.forEach(async (guild) => {
-        guild.channels.cache.forEach(async channel => {
-            if (channel.parentID !== process.env.NEEDED_HELP) return;
-
-            if (!channel.lastMessage) {
-                lastMessageTime = await channel.messages.fetch(
-                    channelChecking.lastMessageID
-                ).createdAt;
-            } else lastMessageTime = channel.lastMessage.createdAt;
-
-            if (!lastMessageTime) return;
-
-            let time = Date.now() - lastMessageTime;
-
-            if (time < 120000) return;
-
-            //IF IT HAS GOTTEN HERE IT MEANS THAT THE @HELPER SHOULD GET PINGED
-        })
-    });
-    console.log('checking channels');
-};
-
-//! On bot ready
+//! On bot ready.
 bot.on('ready', () => {
-    console.log(`${bot.user.tag} has been logged in.`);
-    bot.user.setPresence({
-        status: 'online',
-        activity: {
-            name: 'your commands',
-            type: 'LISTENING',
-            url: 'https://github.com/'
-        },
+    try {
+        console.log(`${bot.user.tag} has been logged in.`);
+        bot.user.setPresence({
+            status: 'online',
+            activity: {
+                name: 'your commands',
+                type: 'WATCHING',
+                url: 'https://github.com/'
+            },
+        });
+    } catch (err) {
+        console.log(err.message);
+        return;
+    }
     });
 
-
-    setInterval(checkActivity, 1000, bot);
-})
-
-//! On message instance
+//! On message instance.
 bot.on('message', message => {
-    if (!message.author || message.author.bot) return timer = true;
-    // TODO - Check if message is in channel of NEEDED  HELP category
-
-    // TODO - 
-    const lastMessage = message.channel.fetch({
-        limit: 1
-    }).then(messages => console.log(`Received ${messages.size} messages`)).catch(console.error);
-    setTimeout(() => {
-        if (message.channel.parentID === process.env.NEEDED_HELP) {
-            if (Math.floor(Date.now() / 1000) - Math.floor(lastMessage.createdTimestamp / 1000) >= 20) {
-                // if (message.author.id == message.author.id) {
-                console.log('moving to free to help');
-                message.channel.setParent(process.env.FREE_TO_HELP);
-
-                commandTimeout[message.author.id] = false;
-                // setTimeout(() => {
-
-                // }, ms('20s'));
-                // }
-            }
+    if (message.channel.type == "dm") {
+        if (message.author.bot) return;
+        if (message.content === `<@!${process.env.BOT_ID}>`) {
+            bot.commands.get('mention').execute(message);
+            message.channel.send('**NOTE:** These commands won\'t work here.');
+            return;
         }
-    }, ms('20s'));
-    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
-    // TODO - Mention Bot to get all the commands and help
+        else return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server and for sure I can help you there.`);
+    }
+    // TODO - Mention Bot to get all the commands and help.    
     if (message.content === `<@!${process.env.BOT_ID}>`) {
         message.channel.send('You mentioned bot');
+        bot.commands.get('mention').execute(message);
     }
-    // TODO - Check if the command is started with prefix
-    else if (message.content.startsWith(process.env.PREFIX)) {
-        //^ Checking for help command
-        if (command === 'help') {
-            bot.commands.get('help').execute(message, args);
+    // TODO - Check if the command is started with prefix.
+    const args = message.content.slice(prefix.length)
+        .trim()
+        .split(/ +/);
+    const command = args.shift().toLowerCase();
 
-        }
-        //^ Checking for ping command
-        else if (command === 'ping') {
-            bot.commands.get('ping').execute(message, args);
-        }
+    //^ Checking for help command.
+    if (command === 'help') {
+        bot.commands.get('help').execute(message, args);
+        return
+    }
+
+    //^ Checking for top Widget/Object command.
+    if (message.content.startsWith(`top${prefix}`)) {
+        if (message.author.bot) return;
+        
+        //& Check for the Numerics in the args.
+        if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package/Object.');
+        bot.commands.get('top').execute(message, args);
+        return;
+    }
+    //^ Checking for ping command.
+    else if (message.content.startsWith(`all${prefix}`)) {
+        bot.commands.get('all').execute(message, args);
+        return
     }
 });
-//! logging in the bot
+//! logging in the bot.
 bot.login(process.env.BOT_TOKEN);
