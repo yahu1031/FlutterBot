@@ -18,12 +18,10 @@
              // Todo - Getting Data from API.
              const get_data = async apiUrl => {
                  try {
-                     console.log(`Started time: ${new Date().getSeconds()}`);
                      const data = await fetch(apiUrl).then(response => response.json())
-                     console.log(`Fetched time: ${new Date().getSeconds()}`);
                      let result = []
                      const data_wanted = data.filter(
-                         d => d.name.toLowerCase() === args[0].toLowerCase() &&
+                         d => d.name.toLowerCase().includes(args[0].toLowerCase()) &&
                          (d.type === 'class' || d.type === 'constructor')
                      );
                      const hrefs = data_wanted.map(data => data.href);
@@ -47,10 +45,9 @@
                      return
                  } catch (error) {
                      chaMsg.send(new Discord.MessageEmbed()
-                         .setColor('#2ECC71')
+                         .setColor('#ff0000')
                          .setTitle(`All results of ${arg} widget/object`)
-                         .setDescription('Sorry the package you are searching for wasn\'t found'))
-                     console.log(error.message);
+                         .setDescription('Sorry the package you are searching for wasn\'t found'));
                      return
                  }
              }

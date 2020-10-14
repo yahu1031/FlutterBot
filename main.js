@@ -50,7 +50,7 @@ bot.on('message', message => {
     }
     // TODO - Mention Bot to get all the commands and help.    
     if (message.content === `<@!${process.env.BOT_ID}>`) {
-        message.channel.send('You mentioned bot');
+        if (message.author.bot) return;
         bot.commands.get('mention').execute(message);
     }
     // TODO - Check if the command is started with prefix.
@@ -68,15 +68,32 @@ bot.on('message', message => {
     //^ Checking for top Widget/Object command.
     if (message.content.startsWith(`top${prefix}`)) {
         if (message.author.bot) return;
-        
+
         //& Check for the Numerics in the args.
         if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package/Object.');
         bot.commands.get('top').execute(message, args);
         return;
     }
-    //^ Checking for ping command.
+    //^ Checking for top Widget's/Object's property command.
+    if (message.content.startsWith(`prop${prefix}`)) {
+        if (message.author.bot) return;
+
+        //& Check for the Numerics in the args.
+        if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package\'s/Object\'s property.');
+        bot.commands.get('prop').execute(message, args);
+        return;
+    }
+    //^ Checking for all widgets/objects command.
     else if (message.content.startsWith(`all${prefix}`)) {
         bot.commands.get('all').execute(message, args);
+        return
+    }
+    //^ Checking for all properties of widget/object command.
+    else if (message.content.startsWith(`allprop${prefix}`)) {
+        bot.commands.get('allprop').execute(message, args);
+        return
+    } else if (message.content.startsWith(`pub${prefix}`)) {
+        bot.commands.get('pub').execute(message, args);
         return
     }
 });
