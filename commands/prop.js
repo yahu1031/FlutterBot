@@ -22,12 +22,9 @@ module.exports = {
                     const data = await fetch(apiUrl).then(response => response.json())
                     if (args[0].includes('.')) {
                         if (property != '') {
-                            console.log(widget)
-                            console.log(property)
                             const prop = data.find(
                                 d => d.name.toLowerCase() === property && d.type === 'property' && d.qualifiedName.toLowerCase().includes(`.${widget}.${property}`)
                             );
-                            console.log(prop.href);
                             const embededLinks = new Discord.MessageEmbed()
                                 .setColor('#2ECC71')
                                 .setTitle('Result for your command')

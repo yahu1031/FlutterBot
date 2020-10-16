@@ -4,7 +4,6 @@ const Discord = require('discord.js');
 
 //! API url
 const apiUrl = 'https://api.flutter.dev/flutter/index.json'
-
 module.exports = {
     name: 'top',
     description: 'On Top command, the bot will provide the information about what the user is searching for.',
@@ -21,7 +20,6 @@ module.exports = {
                     const topWidget = data.find(
                         d => d.name.toLowerCase() === args[0].toLowerCase() && d.type === 'class'
                     );
-                    console.log(topWidget.href);
                     const embededLinks = new Discord.MessageEmbed()
                         .setColor('#2ECC71')
                         .setTitle(`Top result of ${args[0]}`)

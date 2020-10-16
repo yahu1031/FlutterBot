@@ -25,8 +25,6 @@ module.exports = {
                     const data = await fetch(pubAPIurl).then(response => response.json())
                     if (data.packages.length === 0) return message.channel.send(notFoundMsg);
                     let result = [];
-
-                    console.log(data);
                     if (data.packages.length == 1) {
                         return message.channel.send(new Discord.MessageEmbed()
                             .setColor('#2ECC71')
@@ -43,7 +41,6 @@ module.exports = {
                         };
                         result.push(embededLinks);
                     }
-                    console.log(result)
                     const resultMsg = new Discord.MessageEmbed()
                         .setColor('#2ECC71')
                         .setTitle(`packages for search query ${args[0]}`)

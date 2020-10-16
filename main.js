@@ -21,21 +21,16 @@ for (const file of commandFiles) {
 
 //! On bot ready.
 bot.on('ready', () => {
-    try {
-        console.log(`${bot.user.tag} has been logged in.`);
-        bot.user.setPresence({
-            status: 'online',
-            activity: {
-                name: 'your commands',
-                type: 'WATCHING',
-                url: 'https://github.com/'
-            },
-        });
-    } catch (err) {
-        console.log(err.message);
-        return;
-    }
+    console.log(`${bot.user.tag} has been logged in.`);
+    bot.user.setPresence({
+        status: 'online',
+        activity: {
+            name: 'your commands',
+            type: 'WATCHING',
+            url: 'https://github.com/'
+        },
     });
+});
 
 //! On message instance.
 bot.on('message', message => {
@@ -49,7 +44,7 @@ bot.on('message', message => {
         else return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server and for sure I can help you there.`);
     }
     // TODO - Mention Bot to get all the commands and help.    
-    if (message.content === `<@!${process.env.BOT_ID}>`) {
+    if (message.content.includes(`<@!${process.env.BOT_ID}>`)) {
         if (message.author.bot) return;
         bot.commands.get('mention').execute(message);
     }

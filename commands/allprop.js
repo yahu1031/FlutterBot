@@ -22,7 +22,6 @@ module.exports = {
                 try {
                     const data = await fetch(apiUrl).then(response => response.json())
                     let result = []
-                    console.log(widget)
                     const prop = data.filter(d => d.type != 'class' && d.type != 'constructor' && d.qualifiedName.toLowerCase().includes(`.${widget}.`));
                     const hrefs = prop.map(data => data.href);
                     const types = prop.map(data => data.type);
