@@ -71,12 +71,6 @@ In the root dir create file called `.env` and add the variables in the file.
 BOT_TOKEN=YOUR BOT TOKEN HERE
 ```
 
-`BOT_ID`🆔 => your **Bot ID**
-
-```txt
-BOT_ID=YOUR BOT ID HERE
-```
-
 `PREFIX` => this will help bot to identify the command.
 
 ```TXT
