@@ -7,8 +7,8 @@
   <a href="https://github.com/yahu1031/FlutterBot/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/yahu1031/FlutterBot/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/yahu1031/flutter-bot" />
+  <a href="https://github.com/yahu1031/FlutterBot/blob/main/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/yahu1031/flutterbot" />
   </a>
 </p>
 
@@ -62,7 +62,7 @@ This is a Flutter Discord bot created with [Discord.js](https://discord.js.org/)
 
 ## 🤝 Contributing ##
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/yahu1031/FlutterBot/issues). You can also take a look at the [contributing guide](https://github.com/yahu1031/FlutterBot/blob/master/CONTRIBUTING.md). Please don't forget to check [Code of Conduct](https://github.com/yahu1031/FlutterBot/blob/master/CODE_OF_CONDUCT.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/yahu1031/FlutterBot/issues). You can also take a look at the [contributing guide](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md). Please don't forget to check [Code of Conduct](https://github.com/yahu1031/FlutterBot/blob/main/CODE_OF_CONDUCT.md).
 
 ## 💪 Show your support ##
 
@@ -71,4 +71,4 @@ Give a ⭐️ if this project helped you!
 ## 📝 License ##
 
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
-This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.

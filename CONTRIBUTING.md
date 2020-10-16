@@ -7,8 +7,8 @@
   <a href="https://github.com/yahu1031/FlutterBot/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/yahu1031/FlutterBot/blob/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/yahu1031/flutter-bot" />
+  <a href="https://github.com/yahu1031/FlutterBot/blob/main/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/yahu1031/flutterbot" />
   </a>
 </p>
 
@@ -122,6 +122,6 @@ Fork <svg class="octicon octicon-repo-forked" viewBox="0 0 16 16" version="1.1" 
 ## 📝 License ##
 
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
-This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
 
 ***
