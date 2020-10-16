@@ -26,7 +26,7 @@ module.exports = {
                             );
                             const embededLinks = new Discord.MessageEmbed()
                                 .setColor('#2ECC71')
-                                .setTitle('Result for your command')
+                                .setTitle('Property result')
                                 .addFields({
                                     name: `${prop.enclosedBy.name}'s ${prop.name} property`,
                                     value: `https://api.flutter.dev/flutter/${prop.href}`

@@ -34,6 +34,13 @@ bot.on('ready', () => {
 
 //! On message instance.
 bot.on('message', message => {
+    const args = message.content.slice(prefix.length)
+        .trim()
+        .split(/ +/);
+    const command = args.shift().toLowerCase();
+    const regex = /^(?<command>[\S]*?)(!)(?<whitespace>[\s]?)(?<object>[\S]*?)$/;
+    const str = message.content; //Your input string
+    let cmds = ['all', 'allprop', 'top', 'prop', 'pub'];
     if (message.author.bot) return;
     try {
         if (message.channel.type == "dm") {
@@ -51,52 +58,59 @@ bot.on('message', message => {
             bot.commands.get('mention').execute(message);
         }
         // TODO - Check if the command is started with prefix.
-        const args = message.content.slice(prefix.length)
-            .trim()
-            .split(/ +/);
-        const command = args.shift().toLowerCase();
-        const regex = /^(?<type>[\S]*?)(!)(?<whitespace>[\s]?)(?<command>[\S]*?)$/g;
-        const str = message.content; //Your input string
-        const result = regex.exec(str);
-        if (result[3] === ' ') {
-            if (message.author.bot) return;
-            //^ Checking for top Widget/Object command.
-            if (message.content.startsWith(`top${prefix}`)) {
-
-                //& Check for the Numerics in the args.
-                if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package/Object.');
-                bot.commands.get('top').execute(message, args);
-                return;
+        if (regex.test(str)) {
+            const result = regex.exec(str).groups;
+            function checkCmd(cmd) {
+                return cmd === result.command;
             }
-            //^ Checking for top Widget's/Object's property command.
-            if (message.content.startsWith(`prop${prefix}`)) {
+            if (result.command === cmds.find(checkCmd)) {
+                if (result.whitespace === ' ') {
                 if (message.author.bot) return;
+                //^ Checking for top Widget/Object command.
+                if (message.content.startsWith(`top${prefix}`)) {
 
-                //& Check for the Numerics in the args.
-                if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package\'s/Object\'s property.');
-                bot.commands.get('prop').execute(message, args);
-                return;
-            }
-            //^ Checking for all widgets/objects command.
-            else if (message.content.startsWith(`all${prefix}`)) {
-                bot.commands.get('all').execute(message, args);
-                return;
-            }
-            //^ Checking for all properties of widget/object command.
-            else if (message.content.startsWith(`allprop${prefix}`)) {
-                bot.commands.get('allprop').execute(message, args);
-                return;
-            } else if (message.content.startsWith(`pub${prefix}`)) {
-                bot.commands.get('pub').execute(message, args);
-                return;
-            }
-            return;
-        }
-        else return message.channel.send(new Discord.MessageEmbed()
+                    //& Check for the Numerics in the args.
+                    if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package/Object.');
+                    bot.commands.get('top').execute(message, args);
+                    return;
+                }
+                //^ Checking for top Widget's/Object's property command.
+                if (message.content.startsWith(`prop${prefix}`)) {
+                    if (message.author.bot) return;
+
+                    //& Check for the Numerics in the args.
+                    if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package\'s/Object\'s property.');
+                    bot.commands.get('prop').execute(message, args);
+                    return;
+                }
+                //^ Checking for all widgets/objects command.
+                else if (message.content.startsWith(`all${prefix}`)) {
+                    bot.commands.get('all').execute(message, args);
+                    return;
+                }
+                //^ Checking for all properties of widget/object command.
+                else if (message.content.startsWith(`allprop${prefix}`)) {
+                    bot.commands.get('allprop').execute(message, args);
+                    return;
+                } else if (message.content.startsWith(`pub${prefix}`)) {
+                    bot.commands.get('pub').execute(message, args);
+                    return;
+                } else {
+                    return message.channel.send(new Discord.MessageEmbed()
                         .setColor('#ff0000')
                         .setTitle('Wrong arguments')
                         .setDescription(`We hope you don't know how to use property command. Check for pinned messages for help or tag me for all commads help.`));
-    } catch (err) {
+                }
+            }
+            else return message.channel.send(new Discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setTitle('Wrong arguments')
+                .setDescription(`We hope you don't know how to use property command. Check for pinned messages for help or tag me for all commads help.`));
+            }
+        }
+        return
+    }
+    catch (err) {
         return console.log(err.message);
     }
 });
