@@ -1,7 +1,6 @@
 //! Import required modules/packages.
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const prop = require('./prop');
 
 //! API url
 const apiUrl = 'https://api.flutter.dev/flutter/index.json'
