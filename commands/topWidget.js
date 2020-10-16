@@ -22,7 +22,7 @@ module.exports = {
                     );
                     const embededLinks = new Discord.MessageEmbed()
                         .setColor('#2ECC71')
-                        .setTitle(`Top result of ${args[0]}`)
+                        .setTitle(`Top result of ${topWidget.name}`)
                         .addFields({
                             name: `${topWidget.type} ${topWidget.enclosedBy.name}`,
                             value: `https://api.flutter.dev/flutter/${topWidget.href}`

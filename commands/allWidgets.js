@@ -20,8 +20,7 @@ module.exports = {
                     const data = await fetch(apiUrl).then(response => response.json())
                     let result = []
                     const data_wanted = data.filter(
-                        d => d.name.toLowerCase().includes(args[0].toLowerCase()) &&
-                            (d.type === 'class' || d.type === 'constructor')
+                        d => d.name.toLowerCase().includes(args[0].toLowerCase()) && d.type === 'constructor'
                     );
                     const hrefs = data_wanted.map(data => data.href);
                     const types = data_wanted.map(data => data.type);
@@ -35,7 +34,7 @@ module.exports = {
                         }
                     const response = new Discord.MessageEmbed()
                         .setColor('#2ECC71')
-                        .setTitle(`All results for ${data_wanted[0].name} widget/object`)
+                        .setTitle(`All results for ${data_wanted[0].name} Widget/Object`)
                         .addFields(result)
                     chaMsg.send(response);
                     return
