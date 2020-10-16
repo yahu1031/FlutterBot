@@ -1,6 +1,7 @@
 //! Import required modules/packages.
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
+const prop = require('./prop');
 
 //! API url
 const apiUrl = 'https://api.flutter.dev/flutter/index.json'
@@ -27,7 +28,7 @@ module.exports = {
                     const hrefs = data_wanted.map(data => data.href);
                     const types = data_wanted.map(data => data.type);
                     const names = data_wanted.map(data => data.name);
-                    for (let i = 0; i < 10; i++) {
+                    for (let i = 0; i < data_wanted.length; i++) {
                             const embededLinks = {
                                 name: `${names[i]} - ${types[i]}`,
                                 value: `https://api.flutter.dev/flutter/${hrefs[i]}`
