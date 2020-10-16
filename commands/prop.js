@@ -11,7 +11,6 @@ module.exports = {
         let widget = args[0].split('.')[0].toLowerCase();
         let property = args[0].split('.')[1].toLowerCase();
         let chaMsg = message.channel;
-        const arg = args[0].charAt(0).toUpperCase() + args[0].slice(1)
         if (!args.length) {
             return chaMsg.send(`You didn't provide any arguments, ${message.author}!`);
         } else {

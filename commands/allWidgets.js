@@ -1,7 +1,6 @@
 //! Import required modules/packages.
 const fetch = require('node-fetch');
 const Discord = require('discord.js');
-const prop = require('./prop');
 
 //! API url
 const apiUrl = 'https://api.flutter.dev/flutter/index.json'
@@ -11,7 +10,6 @@ module.exports = {
     description: 'On Top command, the bot will provide the information about what the user is searching for.',
     execute(message, args) {
         let chaMsg = message.channel;
-        const arg = args[0].charAt(0).toUpperCase() + args[0].slice(1)
         if (!args.length) {
             return chaMsg.send(`You didn't provide any arguments, ${message.author}!`);
         } else {
@@ -44,8 +42,8 @@ module.exports = {
                 } catch (error) {
                     chaMsg.send(new Discord.MessageEmbed()
                         .setColor('#ff0000')
-                        .setTitle(`All results of ${arg} widget/object`)
-                        .setDescription('Sorry the package you are searching for wasn\'t found'));
+                        .setTitle('Not Found')
+                        .setDescription(`Sorry, we couldn't able to fetch detailes about **${args[0]}**.`));
                     return
                 }
             }

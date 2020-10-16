@@ -13,12 +13,13 @@
     "MD033": {
         "allowed_elements": [
             "a",
+            "br",
+            "div",
             "h1",
             "img",
             "p",
-            "br",
-            "svg",
-            "path"
+            "path",
+            "svg"
         ]
     },
     "MD034": false,

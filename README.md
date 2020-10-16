@@ -28,7 +28,6 @@ This is a Flutter Discord bot created with [Discord.js](https://discord.js.org/)
 
     ```txt
     BOT_TOKEN=you bot token
-    BOT_ID=your bot ID
     PREFIX=!
     ```
 

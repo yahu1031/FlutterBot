@@ -23,7 +23,7 @@ const taggedBotReply = new Discord.MessageEmbed()
         name: 'pub! Package',
         value: 'This command will show top 10 Packages result you are searching for.'
     }, )
-    .setFooter('Source Code: https://github.com/yahu1031/').setTimestamp().setAuthor('Flutter Bot', flutterIcon, 'https://github.com/yahu1031/');
+    .setFooter('Source Code: https://github.com/yahu1031/FlutterBot.git').setTimestamp().setAuthor('Flutter Bot', flutterIcon, 'https://github.com/yahu1031/FlutterBot.git');
 
 
 module.exports = {
