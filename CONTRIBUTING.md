@@ -65,7 +65,7 @@ To configure the bot you must need to add some **variables**.
 
 In the root dir create file called `.env` and add the variables in the file.
 
-`BOT_TOKEN`:ticket: => your **Bot Token**.
+`BOT_TOKEN`:ticket: => your **Bot Token**.<br />
 `PREFIX` => this will help bot to identify the command.
 
 ```txt
