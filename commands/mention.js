@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const flutterIcon = 'https://flutter.dev/images/flutter-mono-81x100.png';
 
 const taggedBotReply = new Discord.MessageEmbed()
-    .setAuthor('Flutter Bot', flutterIcon, 'https://github.com/yahu1031/Flutterclient.git')
+    .setAuthor('Flutter Bot', flutterIcon, 'https://github.com/yahu1031/FlutterBot.git')
     .setColor('#2ECC71')
     .setTitle('ℹ️ Help')
     .setDescription('⚠️ These commands can\'t be within a message, and there can\'t be multiple per messages')
@@ -24,9 +24,12 @@ const taggedBotReply = new Discord.MessageEmbed()
         value: 'This command will show all the properties of a Package/Object you are searching for.',
     }, {
         name: '!pub Package',
+        value: 'This command will give you the top search of the packages if given command matches with the package.',
+    }, {
+        name: '!allpub Package',
         value: 'This command will show top 10 Packages result you are searching for.',
     })
-    .setFooter('Source Code: https://github.com/yahu1031/Flutterclient.git').setTimestamp();
+    .setFooter('Source Code: https://github.com/yahu1031/FlutterBot.git').setTimestamp();
 
 
 module.exports = {
@@ -34,6 +37,6 @@ module.exports = {
     description: 'On help command, the bot will send message that asking the user to wait for 10 minutes.',
     execute(message) {
         // Watching the user message content whether bot is tagged or not.
-        message.channel.send(taggedBotReply);
+            message.channel.send(taggedBotReply);
     },
 };

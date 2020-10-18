@@ -1,9 +1,17 @@
 //  ! Import required modules/packages.
 require('dotenv').config();
-const fs = require('fs');
 const Discord = require('discord.js');
+const fs = require('fs');
+const fetch = require('node-fetch');
 const client = new Discord.Client();
-const prefix = process.env.PREFIX;
+
+//  ! Environment variables.
+client.token = process.env.BOT_TOKEN;
+client.prefix = process.env.PREFIX;
+client.flutterApi = process.env.FLUTTERAPI;
+client.maintainerID = process.env.MAINTAINERID;
+client.docsLink = process.env.DOCSLINK;
+client.pubApi = process.env.PUBAPI;
 
 //  ! Reading command files dynamically.
 client.commands = new Discord.Collection();
@@ -17,47 +25,73 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+//  ! Fetching data from flutter API.
+const get_data = async () => {
+    try {
+        const data = await fetch(client.flutterApi).then(response => response.json());
+        console.log('Data fetched from API.....✔️');
+        //  ! Checking if the fetched data is null.
+        if (data != null) {
+            console.log(`${client.user.tag} has been logged in.....🌐`);
+            //  ! Setting up the bot status.
+            client.user.setPresence({
+                status: 'online',
+                activity: {
+                    name: 'your queries',
+                    type: 'LISTENING',
+                    url: 'https://github.com/yahu1031/FlutterBot.git',
+                },
+            });
+            //  ! Making the data accessable within the project.
+            client.flutterData = data;
+            return;
+        }
+        return;
+    }
+    catch (err) {
+        return console.log('❌️' + err);
+    }
+};
+
 //  ! On bot ready.
 client.once('ready', () => {
-    console.log(`${client.user.tag} has been logged in.`);
-    client.user.setPresence({
-        status: 'online',
-        activity: {
-            name: 'your queries',
-            type: 'LISTENING',
-            url: 'https://github.com/yahu1031/Flutterclient.git',
-        },
-    });
+    get_data(client.flutterApi);
 });
 
 //  ! Handling websocket & network error
 client.on('shardError', error => {
-    console.error('A websocket connection encountered an error:', error);
+    return console.error('❌️ A websocket connection encountered an error:', error);
 });
 
 //  ! Handling API Errors
 process.on('unhandledRejection', error => {
-    console.error('Unhandled promise rejection:', error);
+    return console.error('❌️ Unhandled promise rejection:', error);
 });
 
 //  ! Listening to messages
 client.on('message', message => {
-    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    // ! This makes your bot ignore other bots and itself
+    // ! and not get into a spam loop (we call that "botception").
+    if (message.author.bot) return;
+    const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
-    if (message.author.bot) return;
     if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message, args);
     }
     else {
-        if (!client.commands.has(commandName)) return;
+        if (!client.commands.has(commandName)) return message.channel.send('OOPS! Sorry bud, these is no such command of my knowledge. Tag me for all the commands.');
         if (command.args && args.length) {
             try {
-                command.execute(message, args);
+                client.notFoundMsg = new Discord.MessageEmbed()
+                    .setColor('#ff0000')
+                    .setTitle('Not Found')
+                    .setDescription(`Sorry, we couldn't able to fetch detailes about **${args[0]}**.`);
+                command.execute(client, message, args);
             }
             catch (error) {
                 console.error(error.message);
-                return message.reply(`There was an error trying to execute that command!, <@${process.env.MAINTAINER}> will check it.`);
+                return message.reply(`There was an error trying to execute that command!, <@${client.maintainerID}> will check it.`);
             }
             return;
         }
@@ -68,4 +102,4 @@ client.on('message', message => {
 });
 
 //  ! logging in the client.
-client.login(process.env.BOT_TOKEN);
+client.login(client.token);

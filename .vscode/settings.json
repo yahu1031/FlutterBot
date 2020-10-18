@@ -1,12 +1,13 @@
 {
     "editor.formatOnSave": true,
     "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 100,
+    "files.autoSaveDelay": 10,
     "editor.formatOnPaste": true,
     "editor.fontSize": 16,
     "editor.fontWeight": "500",
     "editor.fontFamily": "'Dank Mono',Consolas, 'Courier New', monospace",
     "editor.formatOnType": true,
+    "editor.formatOnSaveMode": "modifications",
     "editor.fontLigatures": true,
     "editor.codeActionsOnSave": {
         "source.fixAll": true,
