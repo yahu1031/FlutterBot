@@ -12,9 +12,9 @@
   </a>
 </p>
 
-This is a Flutter Discord bot created with [Discord.js](https://discord.js.org/).
+This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.js](https://discord.js.org/).
 
-## Usage ##
+# Usage #
 
 ## Running the Bot ##
 
@@ -79,12 +79,24 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
 This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
 
-<h3 style="color:#ff0000">Deprecations -</h3>
+
+## Deprecations - ##
 
 All commands has been deprecated as `!command`. `command!` will be no longer used.
 
-<h3 style="color:green">New commands +</h3>
+## New commands + ##
 
 1) `!allpub Package` - Gives you the top 10 packages related to your search.
 
 2) `!pub Package` - Gives you the exact package you are searching for, if there is a package you are searching for exists only.
+
+### Add this bot to your guild ###
+
+Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth2/authorize?client_id=756127435065655336&permissions=8&scope=bot)
+
+**NOTE:** By default this bot has Administrator rights. Please do change then rights as you wish after adding it to your guild.
+
+***
+
+<p align="center"> Made with 💚, From Minnu. </p> <br />
+<p align="center">All assets used in this project related to flutter are taken directly from <a href="https://flutter.dev">Flutter.dev</a></p>
