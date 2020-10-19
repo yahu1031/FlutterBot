@@ -1,6 +1,6 @@
 <h1 align="center">Contribute to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -65,13 +65,25 @@ To configure the bot you must need to add some **variables**.
 
 In the root dir create file called `.env` and add the variables in the file.
 
-`BOT_TOKEN`:ticket: => your **Bot Token**.
-`PREFIX` => this will help bot to identify the command.
-
 ```txt
-BOT_TOKEN=YOUR BOT TOKEN HERE
-PREFIX=!
+    BOT_TOKEN=your bot token
+
+    PREFIX=!
+
+    DOCSLINK=https://api.flutter.dev/flutter/
+
+    FLUTTERAPI=https://api.flutter.dev/flutter/index.json
+
+    PUBAPI=https://pub.dev/api/search?q=
+
+    MAINTAINERID=ID of the bot maintainer
 ```
+
+> **Note:**
+>
+> 1) Prefix variable is recommended to be `!`.
+>
+> 2) The links in the environment variables must not be disturbed.
 
 ### Run the project :running: ###
 
@@ -81,19 +93,14 @@ You are almost done with the setup and start running the bot
 npm run start
 ```
 
-For testing files
-
-```sh
-npm run test
-```
-
 If your output in the console seems like this
 
 ```log
-> flutter-bot@0.0.1 start C:\Users\Admin\Documents\Projects\FlutterBot
+> flutter-bot@1.0.1 start C:\Users\Admin\Documents\Projects\FlutterBot
 > node ./main.js
 
-Flutter Bot#2970 has been logged in.
+Data fetched from API.....✔️
+Flutter Bot#2970 has been logged in.....🌐
 ```
 
 then, Congrats you made it.

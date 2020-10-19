@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -12,9 +12,9 @@
   </a>
 </p>
 
-This is a Flutter Discord bot created with [Discord.js](https://discord.js.org/).
+This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.js](https://discord.js.org/).
 
-## Usage ##
+# Usage #
 
 ## Running the Bot ##
 
@@ -27,11 +27,24 @@ This is a Flutter Discord bot created with [Discord.js](https://discord.js.org/)
 2) Create a `.env` file in root folder.
 
     ```txt
-    BOT_TOKEN=you bot token
+    BOT_TOKEN=your bot token
+
     PREFIX=!
+
+    DOCSLINK=https://api.flutter.dev/flutter/
+
+    FLUTTERAPI=https://api.flutter.dev/flutter/index.json
+
+    PUBAPI=https://pub.dev/api/search?q=
+
+    MAINTAINERID=ID of the bot maintainer
     ```
 
-    > **Note:** Prefix variable is recommended to be `!`.
+    > **Note:**
+    >
+    > 1) Prefix variable is recommended to be `!`.
+    >
+    > 2) The links in the environment variables must not be disturbed.
 
 3) Get the dependency modules.
 
@@ -43,12 +56,6 @@ This is a Flutter Discord bot created with [Discord.js](https://discord.js.org/)
 
     ```sh
     npm run start
-    ```
-
-5) Test the bot files.
-
-    ```sh
-    npm run test
     ```
 
 ## 👤 Author ##
@@ -71,3 +78,25 @@ Give a ⭐️ if this project helped you!
 
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
 This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
+
+
+## Deprecations - ##
+
+All commands has been deprecated as `!command`. `command!` will be no longer used.
+
+## New commands + ##
+
+1) `!allpub Package` - Gives you the top 10 packages related to your search.
+
+2) `!pub Package` - Gives you the exact package you are searching for, if there is a package you are searching for exists only.
+
+### Add this bot to your guild ###
+
+Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth2/authorize?client_id=756127435065655336&permissions=8&scope=bot)
+
+**NOTE:** By default this bot has Administrator rights. Please do change then rights as you wish after adding it to your guild.
+
+***
+
+<p align="center"> Made with 💚, From Minnu. </p> <br />
+<p align="center">All assets used in this project related to flutter are taken directly from <a href="https://flutter.dev">Flutter.dev</a></p>
