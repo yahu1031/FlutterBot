@@ -99,7 +99,8 @@ If your output in the console seems like this
 > flutter-bot@1.0.1 start C:\Users\Admin\Documents\Projects\FlutterBot
 > node ./main.js
 
-Flutter Bot#2970 has been logged in.
+Data fetched from API.....✔️
+Flutter Bot#2970 has been logged in.....🌐
 ```
 
 then, Congrats you made it.
