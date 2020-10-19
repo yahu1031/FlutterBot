@@ -37,8 +37,8 @@ const get_data = async () => {
             client.user.setPresence({
                 status: 'online',
                 activity: {
-                    name: 'your queries',
-                    type: 'LISTENING',
+                    name: 'your commands',
+                    type: 'WATCHING',
                     url: 'https://github.com/yahu1031/FlutterBot.git',
                 },
             });
@@ -77,10 +77,10 @@ client.on('message', message => {
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
     if (message.mentions.has(client.user.id)) {
-        client.commands.get('mention').execute(message, args);
+        client.commands.get('mention').execute(message);
     }
     else {
-        if (!client.commands.has(commandName)) return message.channel.send('OOPS! Sorry bud, these is no such command of my knowledge. Tag me for all the commands.');
+        if (!client.commands.has(commandName)) return;
         if (command.args && args.length) {
             try {
                 client.notFoundMsg = new Discord.MessageEmbed()

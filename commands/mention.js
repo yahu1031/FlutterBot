@@ -37,6 +37,6 @@ module.exports = {
     description: 'On help command, the bot will send message that asking the user to wait for 10 minutes.',
     execute(message) {
         // Watching the user message content whether bot is tagged or not.
-            message.channel.send(taggedBotReply);
+        message.channel.send(taggedBotReply);
     },
 };
