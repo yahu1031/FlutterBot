@@ -1,119 +1,105 @@
-//! Import required modules/packages.
+//  ! Import required modules/packages.
 require('dotenv').config();
-
-const fs = require('fs');
 const Discord = require('discord.js');
-const bot = new Discord.Client();
-const prefix = process.env.PREFIX;
+const fs = require('fs');
+const fetch = require('node-fetch');
+const client = new Discord.Client();
 
-//! Checks for a numerics in the String.
-let hasNumber = /\d/;
+//  ! Environment variables.
+client.token = process.env.BOT_TOKEN;
+client.prefix = process.env.PREFIX;
+client.flutterApi = process.env.FLUTTERAPI;
+client.maintainerID = process.env.MAINTAINERID;
+client.docsLink = process.env.DOCSLINK;
+client.pubApi = process.env.PUBAPI;
 
-//! Reading command files dynamically.
-bot.commands = new Discord.Collection();
-//! Retrieving all command files.
+//  ! Reading command files dynamically.
+client.commands = new Discord.Collection();
+
+//  ! Retrieving all command files.
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-//! Dynamically setting commands to the Collection.
+
+//  ! Dynamically setting commands to the Collection.
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
-    bot.commands.set(command.name, command);
+    client.commands.set(command.name, command);
 }
 
-//! On bot ready.
-bot.on('ready', () => {
-    console.log(`${bot.user.tag} has been logged in.`);
-    bot.user.setPresence({
-        status: 'online',
-        activity: {
-            name: 'your commands',
-            type: 'WATCHING',
-            url: 'https://github.com/'
-        },
-    });
-});
-
-//! On message instance.
-bot.on('message', message => {
-    const args = message.content.slice(prefix.length)
-        .trim()
-        .split(/ +/);
-    const command = args.shift().toLowerCase();
-    const regex = /^(?<command>[\S]*?)(!)(?<whitespace>[\s]?)(?<object>[\S]*?)$/;
-    const str = message.content; //Your input string
-    let cmds = ['all', 'allprop', 'top', 'prop', 'pub'];
-    if (message.author.bot) return;
+//  ! Fetching data from flutter API.
+const get_data = async () => {
     try {
-        if (message.channel.type == "dm") {
-            if (message.author.bot) return;
-            if (message.mentions.has(bot.user)) {
-                bot.commands.get('mention').execute(message);
-                message.channel.send('**NOTE:** These commands won\'t work here.');
-                return;
-            }
-            else return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server and for sure I can help you there.`);
+        const data = await fetch(client.flutterApi).then(response => response.json());
+        console.log('Data fetched from API.....✔️');
+        //  ! Checking if the fetched data is null.
+        if (data != null) {
+            console.log(`${client.user.tag} has been logged in.....🌐`);
+            //  ! Setting up the bot status.
+            client.user.setPresence({
+                status: 'online',
+                activity: {
+                    name: 'your queries',
+                    type: 'LISTENING',
+                    url: 'https://github.com/yahu1031/FlutterBot.git',
+                },
+            });
+            //  ! Making the data accessable within the project.
+            client.flutterData = data;
+            return;
         }
-        // TODO - Mention Bot to get all the commands and help.    
-        if (message.mentions.has(bot.user)) {
-            if (message.author.bot) return;
-            bot.commands.get('mention').execute(message);
-        }
-        // TODO - Check if the command is started with prefix.
-        if (regex.test(str)) {
-            const result = regex.exec(str).groups;
-            function checkCmd(cmd) {
-                return cmd === result.command;
-            }
-            if (result.command === cmds.find(checkCmd)) {
-                if (result.whitespace === ' ') {
-                if (message.author.bot) return;
-                //^ Checking for top Widget/Object command.
-                if (message.content.startsWith(`top${prefix}`)) {
-
-                    //& Check for the Numerics in the args.
-                    if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package/Object.');
-                    bot.commands.get('top').execute(message, args);
-                    return;
-                }
-                //^ Checking for top Widget's/Object's property command.
-                if (message.content.startsWith(`prop${prefix}`)) {
-                    if (message.author.bot) return;
-
-                    //& Check for the Numerics in the args.
-                    if (hasNumber.test(args) || !isNaN(args)) return message.channel.send('Make sure you are not searching a Numeric or an AlphaNumeric Package\'s/Object\'s property.');
-                    bot.commands.get('prop').execute(message, args);
-                    return;
-                }
-                //^ Checking for all widgets/objects command.
-                else if (message.content.startsWith(`all${prefix}`)) {
-                    bot.commands.get('all').execute(message, args);
-                    return;
-                }
-                //^ Checking for all properties of widget/object command.
-                else if (message.content.startsWith(`allprop${prefix}`)) {
-                    bot.commands.get('allprop').execute(message, args);
-                    return;
-                } else if (message.content.startsWith(`pub${prefix}`)) {
-                    bot.commands.get('pub').execute(message, args);
-                    return;
-                } else {
-                    return message.channel.send(new Discord.MessageEmbed()
-                        .setColor('#ff0000')
-                        .setTitle('Wrong arguments')
-                        .setDescription(`We hope you don't know how to use property command. Check for pinned messages for help or tag me for all commads help.`));
-                }
-            }
-            else return message.channel.send(new Discord.MessageEmbed()
-                .setColor('#ff0000')
-                .setTitle('Wrong arguments')
-                .setDescription(`We hope you don't know how to use property command. Check for pinned messages for help or tag me for all commads help.`));
-            }
-        }
-        return
+        return;
     }
     catch (err) {
-        return console.log(err.message);
+        return console.log('❌️' + err);
+    }
+};
+
+//  ! On bot ready.
+client.once('ready', () => {
+    get_data(client.flutterApi);
+});
+
+//  ! Handling websocket & network error
+client.on('shardError', error => {
+    return console.error('❌️ A websocket connection encountered an error:', error);
+});
+
+//  ! Handling API Errors
+process.on('unhandledRejection', error => {
+    return console.error('❌️ Unhandled promise rejection:', error);
+});
+
+//  ! Listening to messages
+client.on('message', message => {
+    // ! This makes your bot ignore other bots and itself
+    // ! and not get into a spam loop (we call that "botception").
+    if (message.author.bot) return;
+    const args = message.content.slice(client.prefix.length).trim().split(/ +/);
+    const commandName = args.shift().toLowerCase();
+    const command = client.commands.get(commandName);
+    if (message.mentions.has(client.user.id)) {
+        client.commands.get('mention').execute(message, args);
+    }
+    else {
+        if (!client.commands.has(commandName)) return message.channel.send('OOPS! Sorry bud, these is no such command of my knowledge. Tag me for all the commands.');
+        if (command.args && args.length) {
+            try {
+                client.notFoundMsg = new Discord.MessageEmbed()
+                    .setColor('#ff0000')
+                    .setTitle('Not Found')
+                    .setDescription(`Sorry, we couldn't able to fetch detailes about **${args[0]}**.`);
+                command.execute(client, message, args);
+            }
+            catch (error) {
+                console.error(error.message);
+                return message.reply(`There was an error trying to execute that command!, <@${client.maintainerID}> will check it.`);
+            }
+            return;
+        }
+        else {
+            return message.channel.send(`You didn't provide any arguments, ${message.author}!`);
+        }
     }
 });
 
-//! logging in the bot.
-bot.login(process.env.BOT_TOKEN);
+//  ! logging in the client.
+client.login(client.token);
