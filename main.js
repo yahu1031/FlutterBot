@@ -76,6 +76,10 @@ client.on('message', message => {
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
+    if (message.channel.type === 'dm') {
+        if (message.author.bot) return;
+        return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
+    }
     if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);
     }
