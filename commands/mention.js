@@ -5,31 +5,33 @@ const flutterIcon = 'https://flutter.dev/images/flutter-mono-81x100.png';
 const taggedBotReply = new Discord.MessageEmbed()
     .setAuthor('Flutter Bot', flutterIcon, 'https://github.com/yahu1031/FlutterBot.git')
     .setColor('#2ECC71')
-    .setTitle('ℹ️ Help')
-    .setDescription('⚠️ These commands can\'t be within a message, and there can\'t be multiple per messages')
+    .setTitle('**__Help__**')
+    .setDescription('These commands can\'t be within a message, and there can\'t be multiple per messages')
     .addFields({
-        name: 'Mention me for this help.',
+        name: '**1)**    Mention me for this help.',
         value: 'Tagging me will show up you this message.',
     }, {
-        name: '!top Widget/Object',
+        name: '**2)**    !top Widget/Object',
         value: 'This command will show the top Package/Object you are searching for.',
     }, {
-        name: '!all Widget/Object',
+        name: '**3)**    !all Widget/Object',
         value: 'This command will show you the all Packages/Objects related to your search.',
     }, {
-        name: '!prop Widget/Object.property',
+        name: '**4)**    !prop Widget/Object.property',
         value: 'This command will show the property of a Package/Object you are searching for.',
     }, {
-        name: '!allprop Widget/Object',
+        name: '**5)**    !allprop Widget/Object',
         value: 'This command will show all the properties of a Package/Object you are searching for.',
     }, {
-        name: '!pub Package',
+        name: '**6)**    !pub Package',
         value: 'This command will give you the top search of the packages if given command matches with the package.',
     }, {
-        name: '!allpub Package',
+        name: '**7)**    !allpub Package',
         value: 'This command will show top 10 Packages result you are searching for.',
-    })
-    .setFooter('Source Code: https://github.com/yahu1031/FlutterBot.git').setTimestamp();
+    }, {
+        name: '***__Source Code__:***',
+        value: 'https://github.com/yahu1031/FlutterBot.git',
+    }).setTimestamp();
 
 
 module.exports = {
