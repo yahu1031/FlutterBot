@@ -13,6 +13,25 @@ client.maintainerID = process.env.MAINTAINERID;
 client.docsLink = process.env.DOCSLINK;
 client.pubApi = process.env.PUBAPI;
 
+//  ! Bin website sources
+client.binSites = new Discord.MessageEmbed()
+    .setColor('#')
+    .setTitle('Bin Sites')
+    .setDescription('Here are some bin site we mostly prefer to use for easy code sharing.')
+    .addFields({
+        name: '**Hastebin**',
+        value: 'https://hasteb.in/ or https://hastebin.com/',
+    }, {
+        name: '**Pastebin**',
+        value: 'https://pastebincom/',
+    }, {
+        name: '**Sourcebin**',
+        value: 'https://sourceb.in/',
+    }, {
+        name: '**GitHub Gist**',
+        value: 'https://gist.github.com/',
+    }).setTimestamp();
+
 //  ! Reading command files dynamically.
 client.commands = new Discord.Collection();
 
@@ -72,6 +91,10 @@ process.on('unhandledRejection', error => {
 client.on('message', message => {
     // ! This makes your bot ignore other bots and itself
     // ! and not get into a spam loop (we call that "botception").
+    client.count = () => {
+        return message.content.split(':').length - 1;
+    };
+    // const count = countOccurences();
     if (message.author.bot) return;
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -80,11 +103,17 @@ client.on('message', message => {
         if (message.author.bot) return;
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
     }
-    if (message.mentions.has(client.user.id)) {
+    if (message.content.length >= 1300) {
+        client.commands.get('code').execute(client, message);
+    }
+    else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);
     }
+    else if (message.content.startsWith(client.prefix + 'ask')) {
+        client.commands.get('ask').execute(message);
+    }
     else {
-        if (!client.commands.has(commandName)) return;
+        if (!client.commands.has(commandName) || !message.content.startsWith(client.prefix)) return;
         if (command.args && args.length) {
             try {
                 client.notFoundMsg = new Discord.MessageEmbed()
