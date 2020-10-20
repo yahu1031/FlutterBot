@@ -94,7 +94,13 @@ client.on('message', message => {
     client.count = () => {
         return message.content.split(':').length - 1;
     };
-    // const count = countOccurences();
+    function attachIsImage(msgAttach) {
+        const url = msgAttach.url;
+        //  True if this url is a png image.
+        const pngIndex = url.indexOf('png', url.length - 'png'.length) !== -1;
+        console.log(typeof url);
+        return console.log(pngIndex);
+    }
     if (message.author.bot) return;
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -103,8 +109,14 @@ client.on('message', message => {
         if (message.author.bot) return;
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
     }
-    if (message.content.length >= 1300) {
-        client.commands.get('code').execute(client, message);
+    if (message.attachments.size > 0) {
+        if (message.attachments.every(attachIsImage)) {
+            console.log(typeof attachIsImage('png'));
+        }
+    }
+    if ((message.content.length <= 1000 && message.content.length >= 800 && client.count(':') >= 3) || message.content.startsWith(client.prefix + 'code')) { return message.channel.send(`${message.mentions.users.first()}, We found some code in it. Better you can use these links to share code.\n`, client.binSites); }
+    else if (message.content.length >= 1300) {
+        return client.commands.get('code').execute(client, message);
     }
     else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);

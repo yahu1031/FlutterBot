@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'code',
+    name: 'require',
     description: 'This will check the message content length and checks if it is a code or not and tells the user to use temp bin sites to share code.',
     args: false,
     execute(client, message) {
