@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const fetch = require('node-fetch');
 
 module.exports = {
     name: 'allpub',
@@ -6,12 +7,15 @@ module.exports = {
     description: 'This command will show top 10 Packages result you are searching for.',
     execute(client, message, args) {
         const result = [];
+        const widget = args[0].toLowerCase();
+        const pubAPIurl = client.pubApi + widget;
         // Todo - Getting Data from API.
         const get_data = async () => {
             try {
-                if (client.pubData.packages.length === 0) return message.channel.send(client.notFoundMsg);
-                for (let i = 0; i < client.pubData.packages.length; i++) {
-                    const packageName = client.pubData.packages[i].package;
+                const pubData = await fetch(pubAPIurl).then(response => response.json());
+                if (pubData.packages.length === 0) return message.channel.send(client.notFoundMsg);
+                for (let i = 0; i < pubData.packages.length; i++) {
+                    const packageName = pubData.packages[i].package;
                     const embededLinks = {
                         name: packageName,
                         value: `https://pub.dev/packages/${packageName}`,
@@ -28,7 +32,7 @@ module.exports = {
                 return console.log('❌️' + err.message);
             }
         };
-        get_data(client.pubAPIurl);
+        get_data(pubAPIurl);
         return;
     },
 };
