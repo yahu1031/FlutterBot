@@ -6,15 +6,15 @@ module.exports = {
     args: true,
     description: 'This command will give you the top search of the packages if given command matches with the package.',
     execute(client, message, args) {
-        client.widget = args[0].toLowerCase();
-        client.pubAPIurl = client.pubApi + client.widget;
+        const widget = args[0].toLowerCase();
+        const pubAPIurl = client.pubApi + widget;
         // Todo - Getting Data from API.
         const get_data = async () => {
             try {
-                client.pubData = await fetch(client.pubAPIurl).then(response => response.json());
-                const packageName = client.pubData.packages[0].package;
-                if (client.pubData.packages.length === 0) return message.channel.send(client.notFoundMsg);
-                if (client.widget === packageName.toLowerCase()) {
+                const pubData = await fetch(pubAPIurl).then(response => response.json());
+                const packageName = pubData.packages[0].package;
+                if (pubData.packages.length === 0) return message.channel.send(client.notFoundMsg);
+                if (widget === packageName.toLowerCase()) {
                     return message.channel.send(new Discord.MessageEmbed()
                         .setColor('#2ECC71')
                         .setTitle(`Pub packages for search ${args[0]}`)
@@ -31,7 +31,7 @@ module.exports = {
                 return console.log('❌️ ' + err.message);
             }
         };
-        get_data(client.pubAPIurl);
+        get_data(pubAPIurl);
         return;
     },
 };
