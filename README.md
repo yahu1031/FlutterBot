@@ -79,7 +79,6 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
 This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
 
-
 ## Deprecations - ##
 
 All commands has been deprecated as `!command`. `command!` will be no longer used.
