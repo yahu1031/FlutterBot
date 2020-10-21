@@ -12,7 +12,7 @@ module.exports = {
         }
         else {
             message.reply('We are finding more than 1300 charecters in your message. We always suggest you to make smaller messages with good content/information.');
-            if (client.count(':') > 3) return message.channel.send('And also we assume this as code. Better you can use these links to share code.', client.binSites);
+            if (client.count(client.codeContent) > 3) return message.channel.send('And also we assume this as code. Better you can use these links to share code.', client.binSites);
             return;
         }
     },

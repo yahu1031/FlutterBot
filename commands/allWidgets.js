@@ -1,4 +1,3 @@
-//  ! Import required modules/packages.
 const Discord = require('discord.js');
 
 module.exports = {
@@ -7,11 +6,10 @@ module.exports = {
     description: 'This command will show you the all Packages/Objects related to your search.',
     execute(client, message, args) {
         //  Todo - Getting Data from API.
-        const widget = args[0].toLowerCase();
         const result = [];
         //  Todo - Getting Data from API.
         try {
-            const allWidgets = client.flutterData.filter(d => d.name.toLowerCase().includes(widget) && d.type === 'constructor');
+            const allWidgets = client.flutterData.filter(d => d.name.toLowerCase().includes(args[0].toLowerCase()) && d.type === 'constructor');
             const [hrefs, names] = ['href', 'name'].map(p => allWidgets.map(td => td[p]));
             for (let i = 0; i < allWidgets.length; i++) {
                 const embededLinks = {

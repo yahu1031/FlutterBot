@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const flutterIcon = 'https://flutter.dev/images/flutter-mono-81x100.png';
 
 const taggedBotReply = new Discord.MessageEmbed()
-    .setAuthor('Flutter Bot', flutterIcon, 'https://github.com/yahu1031/FlutterBot.git')
+    .setThumbnail(flutterIcon)
     .setColor('#2ECC71')
     .setTitle('**__Help__**')
     .setDescription('These commands can\'t be within a message, and there can\'t be multiple per messages')
