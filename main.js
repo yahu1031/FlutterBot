@@ -104,7 +104,9 @@ client.on('message', message => {
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
     }
     if ((message.content.length <= 1300 && message.content.length >= 800 && client.count(client.codeContent) >= 5) || message.content.startsWith(client.prefix + 'code')) {
-        return message.reply('We found some code here. Better you can use these links to share code.', client.binSites);
+        if (args.length != 0 && !isNaN(args[0]) && args[0].length === 18) {
+            return message.channel.send(`<@${args[0]}>, We found some code here. Better you can use these links to share code.`, client.binSites);
+        }
     }
     else if (message.content.length >= 1300) {
         return client.commands.get('code').execute(client, message);
