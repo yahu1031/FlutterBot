@@ -26,8 +26,11 @@ const taggedBotReply = new Discord.MessageEmbed()
         name: '**6)**    !pub Package',
         value: 'This command will give you the top search of the packages if given command matches with the package.',
     }, {
-        name: '**7)**    !allpub Package',
-        value: 'This command will show top 10 Packages result you are searching for.',
+        name: '**8)**    !java install',
+        value: 'This command will provide you the java installation links.',
+    }, {
+        name: '**9)**    !flutterfire Package',
+        value: 'This command will provide you the firebase docs you are searching for.\n **Eg:** \'analytics\', \'auth\', \'firestore\', \'functions\', \'messaging\', \'storage\', \'crashlytics\', \'database\', \'remote - config\', \'performance\'',
     }, {
         name: '***__Source Code__:***',
         value: 'https://github.com/yahu1031/FlutterBot.git',
