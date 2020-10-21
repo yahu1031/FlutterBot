@@ -85,9 +85,22 @@ All commands has been deprecated as `!command`. `command!` will be no longer use
 
 ## New commands + ##
 
-1) `!allpub Package` - Gives you the top 10 packages related to your search.
+1) `!java install` - This command will provide you the java installation links.
 
-2) `!pub Package` - Gives you the exact package you are searching for, if there is a package you are searching for exists only.
+2) `!flutterfire Package` - This command will provide you the firebase docs you are searching for. 
+> **Eg:**
+* !flutterfire docs 
+* !flutterfire analytics, 
+* !flutterfire auth, 
+* !flutterfire firestore, 
+* !flutterfire functions, 
+* !flutterfire messaging, 
+* !flutterfire storage, 
+* !flutterfire crashlytics, 
+* !flutterfire database, 
+* !flutterfire remote - config,
+* !flutterfire core
+* !flutterfire performance.
 
 ### Add this bot to your guild ###
 
