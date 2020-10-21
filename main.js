@@ -91,16 +91,10 @@ process.on('unhandledRejection', error => {
 client.on('message', message => {
     // ! This makes your bot ignore other bots and itself
     // ! and not get into a spam loop (we call that "botception").
+    client.codeContent = /[{(:)}]+/;
     client.count = () => {
-        return message.content.split(':').length - 1;
+        return message.content.split(client.codeContent).length - 1;
     };
-    function attachIsImage(msgAttach) {
-        const url = msgAttach.url;
-        //  True if this url is a png image.
-        const pngIndex = url.indexOf('png', url.length - 'png'.length) !== -1;
-        console.log(typeof url);
-        return console.log(pngIndex);
-    }
     if (message.author.bot) return;
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -109,20 +103,14 @@ client.on('message', message => {
         if (message.author.bot) return;
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
     }
-    if (message.attachments.size > 0) {
-        if (message.attachments.every(attachIsImage)) {
-            console.log(typeof attachIsImage('png'));
-        }
+    if ((message.content.length <= 1300 && message.content.length >= 800 && client.count(client.codeContent) >= 5) || message.content.startsWith(client.prefix + 'code')) {
+        return message.reply('We found some code here. Better you can use these links to share code.', client.binSites);
     }
-    if ((message.content.length <= 1000 && message.content.length >= 800 && client.count(':') >= 3) || message.content.startsWith(client.prefix + 'code')) { return message.channel.send(`${message.mentions.users.first()}, We found some code in it. Better you can use these links to share code.\n`, client.binSites); }
     else if (message.content.length >= 1300) {
         return client.commands.get('code').execute(client, message);
     }
     else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);
-    }
-    else if (message.content.startsWith(client.prefix + 'ask')) {
-        client.commands.get('ask').execute(message);
     }
     else {
         if (!client.commands.has(commandName) || !message.content.startsWith(client.prefix)) return;
@@ -136,7 +124,7 @@ client.on('message', message => {
             }
             catch (error) {
                 console.error(error.message);
-                return message.reply(`There was an error trying to execute that command!, <@${client.maintainerID}> will check it.`);
+                return message.channel.send(`There was an error trying to execute that command!, <@${client.maintainerID}> will check it.`);
             }
             return;
         }
