@@ -1,4 +1,17 @@
-# Contributor Covenant Code of Conduct #
+<h1 align="center">Contributor Covenant Code of Conduct</h1>
+
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.7-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/yahu1031/FlutterBot/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/yahu1031/FlutterBot/blob/main/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/yahu1031/flutterbot" />
+  </a>
+</p>
 
 ## Our Pledge ##
 
