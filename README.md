@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.0.5-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.0.7-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -38,6 +38,8 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
     PUBAPI=https://pub.dev/api/search?q=
 
     MAINTAINERID=ID of the bot maintainer
+
+    FLUTTERFIRE=https://firebase.flutter.dev/docs/
     ```
 
     > **Note:**

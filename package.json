@@ -1,6 +1,6 @@
 {
   "name": "flutter-bot",
-  "version": "2.0.5",
+  "version": "2.0.7",
   "description": "A Flutter Discord bot created with Discord.js",
   "main": "main.js",
   "scripts": {

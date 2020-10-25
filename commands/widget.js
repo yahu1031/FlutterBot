@@ -10,7 +10,7 @@ module.exports = {
         // Todo - Getting Data from API.
         try {
             const topWidget = client.flutterData.find(
-                d => d.name.toLowerCase() === args[0].toLowerCase() && d.type === 'class' && d.href.toLowerCase().startsWith('widgets/'),
+                d => d.name.toLowerCase() === args[0].toLowerCase() && d.type === 'class',
             );
             const result = new Discord.MessageEmbed()
                 .setColor('#2ECC71')
