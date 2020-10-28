@@ -79,22 +79,18 @@ client.once('ready', () => {
 
 //  ! Handling websocket & network error
 client.on('shardError', error => {
-    return console.error('❌️ A websocket connection encountered an error:', error);
+    return console.error('❌️ A websocket connection encountered an error: \n', error);
 });
 
 //  ! Handling API Errors
 process.on('unhandledRejection', error => {
-    return console.error('❌️ Unhandled promise rejection:', error);
+    return console.error('❌️ Unhandled promise rejection: \n', error);
 });
 
 //  ! Listening to messages
 client.on('message', message => {
     // ! This makes your bot ignore other bots and itself
     // ! and not get into a spam loop (we call that "botception").
-    client.codeContent = /[{(:)}]+/;
-    client.count = () => {
-        return message.content.split(client.codeContent).length - 1;
-    };
     if (message.author.bot) return;
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -102,14 +98,6 @@ client.on('message', message => {
     if (message.channel.type === 'dm') {
         if (message.author.bot) return;
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
-    }
-    if ((message.content.length <= 1300 && message.content.length >= 800 && client.count(client.codeContent) >= 5) || message.content.startsWith(client.prefix + 'code')) {
-        if (args.length != 0 && !isNaN(args[0]) && args[0].length === 18) {
-            return message.channel.send(`<@${args[0]}>, We found some code here. Better you can use these links to share code.`, client.binSites);
-        }
-    }
-    else if (message.content.length >= 1300) {
-        return client.commands.get('code').execute(client, message);
     }
     else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);

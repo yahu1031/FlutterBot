@@ -31,7 +31,12 @@ module.exports = {
                 return console.log('❌️ ' + err.message);
             }
         };
-        get_data(pubAPIurl);
-        return;
+        if (widget === 'help') {
+            return message.channel.send('**__Usage of pub command__** \n \n Use this command only if you know what package it is. \n > `!pub <package you want>` \n \n **__Eg__:** `!pub google_fonts`');
+        }
+        else {
+            get_data(pubAPIurl);
+        }
+        // return;
     },
 };

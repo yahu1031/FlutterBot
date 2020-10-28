@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.0.7-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.1.8-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -81,34 +81,28 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
 This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
 
-## Deprecations - ##
-
-All commands has been deprecated as `!command`. `command!` will be no longer used.
-
 ## New commands + ##
 
-1) `!java install` - This command will provide you the java installation links.
+1) Mentioning Bot will give you the information about what commands we have.
 
-2) `!flutterfire Package` - This command will provide you the firebase docs you are searching for. 
-> **Eg:**
-* !flutterfire docs 
-* !flutterfire analytics, 
-* !flutterfire auth, 
-* !flutterfire firestore, 
-* !flutterfire functions, 
-* !flutterfire messaging, 
-* !flutterfire storage, 
-* !flutterfire crashlytics, 
-* !flutterfire database, 
-* !flutterfire remote - config,
-* !flutterfire core
-* !flutterfire performance.
+2) Help argument for every command has been added.
+
+## Hidden ##
+
+Three commands has been hidden from the commands available.
+  * `!ask USER_ID`
+  * `!code MENTION_USER`
+  * `!java install/jdk/jre`
 
 ### Add this bot to your guild ###
 
 Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth2/authorize?client_id=756127435065655336&permissions=8&scope=bot)
 
-**NOTE:** By default this bot has Administrator rights. Please do change then rights as you wish after adding it to your guild.
+**NOTE:** By default this bot has Administrator rights. Please do change the rights as you wish after adding it to your guild or use this [Permissions Calculator](https://discordapi.com/permissions.html) to calculate permissions and add your bot ID to generate a invite link.
+
+## What's-up on the next update ##
+
+Pub API documentaion for all [PUB packages](http://pub.dev/) and [Flutterfire](https://firebase.flutter.dev/) packages. 
 
 ***
 

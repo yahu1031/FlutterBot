@@ -32,7 +32,12 @@ module.exports = {
                 return console.log('❌️' + err.message);
             }
         };
-        get_data(pubAPIurl);
+        if (widget === 'help') {
+            return message.channel.send('**__Usage of allpub command__** \n \n Use this command top 10 packages for your search. \n > `!allpub <package you want>` \n \n **__Eg__:** `!allpub api`');
+        }
+        else {
+            get_data(pubAPIurl);
+        }
         return;
     },
 };
