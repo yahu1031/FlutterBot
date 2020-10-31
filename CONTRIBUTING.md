@@ -1,7 +1,7 @@
 <h1 align="center">Contribute to flutter-bot 🤖</h1>
 
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.2.1+@hotfix-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.2.1+-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -99,7 +99,7 @@ You are almost done with the setup and start running the bot
 If your output in the console seems like this
 
   ```log
-  > flutter-bot@2.2.1+@hotfix start C:\Users\Admin\Documents\Projects\FlutterBot
+  > flutter-bot@2.2.1+ start C:\Users\Admin\Documents\Projects\FlutterBot
   > node ./main.js
 
   Data fetched from API.....✔️
