@@ -102,6 +102,12 @@ client.on('message', message => {
     else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);
     }
+    else if (message.content === client.prefix + 'code') {
+        // Delete the user's message in 5mins, inform it by the bot's message.
+        // message.delete({ timeout: 5 * 60 * 1000 });
+        message.channel.send('Hey bud, We would request you to kindly share your code in following bin sites.');
+        return message.channel.send(client.binSites);
+    }
     else {
         if (!client.commands.has(commandName) || !message.content.startsWith(client.prefix)) return;
         if (command.args && args.length) {

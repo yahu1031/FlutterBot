@@ -40,7 +40,7 @@ module.exports = {
                 .setDescription('These are the recommended java versions you can install to work with flutter.')
                 .addFields({
                     name: 'JRE 8u271',
-                    value: `[**Download from here**](${jdkLink} "Download JDK now")\n `,
+                    value: `[**Download from here**](${jreLink} "Download JRE now")\n `,
                 }, {
                     name: 'JDK 8u271',
                     value: `[**Download from here**](${jdkLink} "Download JDK now")`,
