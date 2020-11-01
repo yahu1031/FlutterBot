@@ -23,7 +23,7 @@ client.binSites = new Discord.MessageEmbed()
         value: 'https://hasteb.in/ or https://hastebin.com/',
     }, {
         name: '**Pastebin**',
-        value: 'https://pastebincom/',
+        value: 'https://pastebin.com/',
     }, {
         name: '**Sourcebin**',
         value: 'https://sourceb.in/',
