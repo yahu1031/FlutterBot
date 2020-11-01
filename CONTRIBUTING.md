@@ -1,7 +1,7 @@
 <h1 align="center">Contribute to flutter-bot 🤖</h1>
 
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.0.7-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.2.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -66,7 +66,7 @@ To configure the bot you must need to add some **variables**.
 
 In the root dir create file called `.env` and add the variables in the file.
 
-```txt
+  ```txt
     BOT_TOKEN=your bot token
 
     PREFIX=!
@@ -78,7 +78,9 @@ In the root dir create file called `.env` and add the variables in the file.
     PUBAPI=https://pub.dev/api/search?q=
 
     MAINTAINERID=ID of the bot maintainer
-```
+
+    FLUTTERFIRE=https://firebase.flutter.dev/docs/
+  ```
 
 > **Note:**
 >
@@ -90,19 +92,19 @@ In the root dir create file called `.env` and add the variables in the file.
 
 You are almost done with the setup and start running the bot
 
-```sh
-npm run start
-```
+  ```sh
+  npm run start
+  ```
 
 If your output in the console seems like this
 
-```log
-> flutter-bot@2.0.7 start C:\Users\Admin\Documents\Projects\FlutterBot
-> node ./main.js
+  ```log
+  > flutter-bot@2.2.1 start C:\Users\Admin\Documents\Projects\FlutterBot
+  > node ./main.js
 
-Data fetched from API.....✔️
-Flutter Bot#2970 has been logged in.....🌐
-```
+  Data fetched from API.....✔️
+  Flutter Bot#2970 has been logged in.....🌐
+  ```
 
 then, Congrats you made it.
 
@@ -123,3 +125,6 @@ Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
 This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
 
 ***
+
+<p align="center"> Made with 💚, From Minnu. </p> <br />
+<p align="center">All assets used in this project related to flutter are taken directly from <a href="https://flutter.dev">Flutter.dev</a></p>
