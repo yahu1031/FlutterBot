@@ -17,7 +17,7 @@ module.exports = {
                     d => d.name.toLowerCase() === args[0].toLowerCase() && d.type === 'class',
                 );
                 const result = new Discord.MessageEmbed()
-                    .setColor('#2ECC71')
+                    .setColor('#46D1FD')
                     .setTitle(`Top result of ${topWidget.name}`)
                     .addFields({
                         name: `${topWidget.type} ${topWidget.enclosedBy.name}`,

@@ -1,6 +1,6 @@
 {
   "name": "flutter-bot",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "A Flutter Discord bot created with Discord.js",
   "main": "main.js",
   "scripts": {
@@ -17,7 +17,6 @@
     "fs": "0.0.1-security",
     "node-fetch": "^2.6.1"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yahu1031/FlutterBot.git"

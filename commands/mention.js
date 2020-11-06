@@ -4,7 +4,7 @@ const flutterIcon = 'https://flutter.dev/images/flutter-mono-81x100.png';
 
 const taggedBotReply = new Discord.MessageEmbed()
     .setThumbnail(flutterIcon)
-    .setColor('#2ECC71')
+    .setColor('#46D1FD')
     .setTitle('**__Help__**')
     .addFields({
         name: 'Flutter Commands',

@@ -53,14 +53,14 @@ const get_data = async () => {
         if (data != null) {
             console.log(`${client.user.tag} has been logged in.....🌐`);
             //  ! Setting up the bot status.
-client.user.setPresence({
-    status: 'online',
-    activity: {
-        name: 'your commands',
-        type: 'WATCHING',
-        url: 'https://github.com/yahu1031/FlutterBot.git',
-    },
-});
+            client.user.setPresence({
+                status: 'online',
+                activity: {
+                    name: 'your commands',
+                    type: 'WATCHING',
+                    url: 'https://github.com/yahu1031/FlutterBot.git',
+                },
+            });
             //  ! Making the data accessable within the project.
             client.flutterData = data;
             return;

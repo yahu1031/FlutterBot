@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.2.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.2.2-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -81,17 +81,19 @@ Give a ⭐️ if this project helped you!
 Copyright © 2020 [minnu](https://github.com/yahu1031).<br />
 This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) licensed.
 
-## New commands + ##
+## New Changes ➕ ##
 
 1) Mentioning Bot will give you the information about what commands we have.
 
 2) Help argument for every command has been added.
 
+3) Added Colors to embeded messages.
+
 ## Hidden ##
 
 Three commands has been hidden from the commands available.
   * `!ask USER_ID`
-  * `!code MENTION_USER`
+  * `!code`
   * `!java install/jdk/jre`
 
 ### Add this bot to your guild ###
