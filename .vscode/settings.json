@@ -5,7 +5,7 @@
     "editor.formatOnPaste": true,
     "editor.fontSize": 16,
     "editor.fontWeight": "500",
-    "editor.fontFamily": "'Dank Mono',Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "'Fira Code iScript', Consolas, 'Courier New', monospace",
     "editor.formatOnType": true,
     "editor.formatOnSaveMode": "modifications",
     "editor.fontLigatures": true,

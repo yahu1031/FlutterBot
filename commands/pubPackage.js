@@ -16,7 +16,7 @@ module.exports = {
                 if (pubData.packages.length === 0) return message.channel.send(client.notFoundMsg);
                 if (widget === packageName.toLowerCase()) {
                     return message.channel.send(new Discord.MessageEmbed()
-                        .setColor('#2ECC71')
+                        .setColor('#01579B')
                         .setTitle(`Pub packages for search ${args[0]}`)
                         .addFields({
                             name: packageName,

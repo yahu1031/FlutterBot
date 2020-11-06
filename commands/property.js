@@ -20,7 +20,7 @@ module.exports = {
                             d => d.name.toLowerCase() === property && d.type === 'property' && d.qualifiedName.toLowerCase().includes(`.${widget}.${property}`),
                         );
                         const embededLinks = new Discord.MessageEmbed()
-                            .setColor('#2ECC71')
+                            .setColor('#46D1FD')
                             .setTitle('Property result')
                             .addFields({
                                 name: `${prop.enclosedBy.name}'s ${prop.name} property`,

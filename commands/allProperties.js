@@ -24,7 +24,7 @@ module.exports = {
                 result.push(embededLinks);
             }
             const response = new Discord.MessageEmbed()
-                .setColor('#2ECC71')
+                .setColor('#46d1fd')
                 .setTitle(`All properties of ${widget}`)
                 .addFields(result);
             message.channel.send(result.length != 0 ? response : client.notFoundMsg);

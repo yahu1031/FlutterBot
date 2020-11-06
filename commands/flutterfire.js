@@ -9,6 +9,7 @@ module.exports = {
     execute(client, message, args) {
         const arg = args[0].toLowerCase();
         const flutterfireEmbed = new Discord.MessageEmbed()
+            .setColor('#ffca28')
             .setAuthor('Flutterfire Docs')
             .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
             .setDescription('The official Firebase plugins for Flutter which really helps you and makes your learning easy.')
@@ -19,6 +20,7 @@ module.exports = {
         else if (arg === 'list') {
             return message.channel.send(
                 new Discord.MessageEmbed()
+                    .setColor('#ffca28')
                     .setTitle('__Flutterfire Docs commands__')
                     .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
                     .setDescription('Here are the list of commands for **Flutterfire Docs**')
@@ -66,13 +68,15 @@ module.exports = {
         }
         else if (arg === 'core') {
             return message.channel.send(new Discord.MessageEmbed()
+                .setColor('#ffca28')
                 .setAuthor('Flutterfire Docs')
                 .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
                 .setDescription('The firebase_core plugin is responsible for connecting your Flutter app to your Firebase project.')
-                .addField('Core Docs', `${flutterfire}core/usage`));
+                .addField('Core Docs', `${flutterfire}core/usage`, false));
         }
         else if (arg === 'docs') {
             return message.channel.send(new Discord.MessageEmbed()
+                .setColor('#ffca28')
                 .setAuthor('Flutterfire Docs')
                 .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
                 .setDescription('FlutterFire is a set of Flutter plugins which connect your Flutter application to Firebase.')
@@ -83,4 +87,3 @@ module.exports = {
         }
     },
 };
-

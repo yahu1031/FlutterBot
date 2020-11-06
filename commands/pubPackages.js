@@ -23,7 +23,7 @@ module.exports = {
                     result.push(embededLinks);
                 }
                 const resultMsg = new Discord.MessageEmbed()
-                    .setColor('#2ECC71')
+                    .setColor('#01579B')
                     .setTitle(`Pub packages for search ${args[0]}`)
                     .addFields(result);
                 return message.channel.send(resultMsg);
