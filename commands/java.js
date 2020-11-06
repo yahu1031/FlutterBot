@@ -11,6 +11,7 @@ module.exports = {
     execute(client, message, args) {
         if (args[0].toLowerCase() === 'jre') {
             return message.reply(new Discord.MessageEmbed()
+                .setColor('#f89615')
                 .setAuthor('Download JRE file')
                 .setThumbnail(javaLogo)
                 .setDescription('This is the recommended JRE version you can install to work with flutter.')
@@ -23,6 +24,7 @@ module.exports = {
         }
         if (args[0].toLowerCase() === 'jdk') {
             return message.reply(new Discord.MessageEmbed()
+                .setColor('#f89615')
                 .setAuthor('Download JDK file')
                 .setThumbnail(javaLogo)
                 .setDescription('This is the recommended JDK version you can install to work with flutter.')
@@ -35,6 +37,7 @@ module.exports = {
         }
         else if (args[0] === 'install') {
             return message.reply(new Discord.MessageEmbed()
+                .setColor('#f89615')
                 .setAuthor('Download Java files')
                 .setThumbnail(javaLogo)
                 .setDescription('These are the recommended java versions you can install to work with flutter.')
