@@ -8,7 +8,6 @@ module.exports = {
     execute(client, message, args) {
         const widget = args[0].toLowerCase().split('.')[0];
         const property = args[0].toLowerCase().split('.')[1];
-        // Todo - Getting Data from API.
         if (args[0] === 'help') {
             message.channel.send('**__Usage of prop command__** \n \n Use this command only if you want docs of particular propety of a widget. \n > `!prop <widget.tag>` \n \n **__Eg__:** `!prop hero.tag`');
         }
@@ -21,6 +20,7 @@ module.exports = {
                         );
                         const embededLinks = new Discord.MessageEmbed()
                             .setColor('#46D1FD')
+                            .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823132375515156/flutter.webp')
                             .setTitle('Property result')
                             .addFields({
                                 name: `${prop.enclosedBy.name}'s ${prop.name} property`,

@@ -1,7 +1,7 @@
 <h1 align="center">Contribute to flutter-bot 🤖</h1>
 
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.2.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.3.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -46,7 +46,7 @@ Fork us to your repo and help us developing more better. Create a branch in the 
 2) Install required packages.
 
     ```sh
-    npm install
+    npm i
     ```
 
 3) Be ready to develop it :wink:.
@@ -80,13 +80,15 @@ In the root dir create file called `.env` and add the variables in the file.
     MAINTAINERID=ID of the bot maintainer
 
     FLUTTERFIRE=https://firebase.flutter.dev/docs/
+
+    PUBAPIDOCS=https://pub.dev/documentation/
   ```
 
-> **Note:**
->
-> 1) Prefix variable is recommended to be `!`.
->
-> 2) The links in the environment variables must not be disturbed.
+  > **Note:**
+  >
+  > 1) Prefix variable is recommended to be `!`.
+  >
+  > 2) The links in the environment variables must not be disturbed.
 
 ### Run the project :running: ###
 
@@ -99,7 +101,7 @@ You are almost done with the setup and start running the bot
 If your output in the console seems like this
 
   ```log
-  > flutter-bot@2.2.2 start C:\Users\Admin\Documents\Projects\FlutterBot
+  > flutter-bot@2.3.0 start C:\Users\Admin\Documents\Projects\FlutterBot
   > node ./main.js
 
   Data fetched from API.....✔️

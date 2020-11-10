@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.2.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.3.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -12,9 +12,88 @@
   </a>
 </p>
 
-This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.js](https://discord.js.org/).
+This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.js](https://discord.js.org/). This bot provides the useful resources like docs, pub plugins/packages and API docs, flutterfire docs.
 
 # Usage #
+
+## Commands and Examples ##
+
+* **`@Bot Name`**
+
+  On mentioning the bot will give you usage of commands embed message.
+
+  <img src='https://cdn.discordapp.com/attachments/756903745241088011/775829104875405332/unknown.png' height = 200>
+
+* **`!\<Flutter Command\> help`**
+
+  We have few [Flutter](https://flutter.dev/) commands and they are listed below
+
+    * `!topwidget`  - This command will show the top Package/Object you are searching for.
+        * Eg: `!topwidget hero`
+
+          <img src='https://cdn.discordapp.com/attachments/756903745241088011/775831579897364490/unknown.png' width = 300/>
+
+    * `!allwidgets` - This command will show you the all Packages/Objects related to your search.
+        * Eg: `!allwidgets hero`
+
+          <img src = 'https://cdn.discordapp.com/attachments/756903745241088011/775832540006055946/unknown.png' height = 200/>
+
+    * `!prop` - This will help you with property you are searching for a particular widget.
+        * Eg: `!prop hero.tag`
+
+          <img src = 'https://cdn.discordapp.com/attachments/756903745241088011/775833039426551808/unknown.png' width = 300/>
+
+    * `!allprop` - This command will show all the properties of a Package/Object you are searching for.
+        * Eg: `!allprop hero`
+
+          <img src =  'https://cdn.discordapp.com/attachments/756903745241088011/775833480466399272/unknown.png' height = 200/>
+
+* **`!\<Pub Command\> help`**
+
+  We have few [pub](https://pub.dev/) commands and they are listed below
+
+    * `!pub` - This command will give you the top search of the packages if given command matches with the package.
+
+        * Eg: `!pub google_fonts`
+
+          <img src='https://cdn.discordapp.com/attachments/756903745241088011/775836241933369364/unknown.png' width=300/>
+
+    * `!allpub` - This command will show top 10 Packages result you are searching for.
+
+        * Eg: `!allpub google_fonts`
+
+          <img src='https://cdn.discordapp.com/attachments/756903745241088011/775837021570072576/unknown.png' height=200/>
+
+    We also have `Pubdocs` command that which provides you the [`Pub packae's/plugin's`](https://pub.dev) API documentation.
+
+    * Eg: `!pubdocs google_fonts`
+
+      <img src = 'https://cdn.discordapp.com/attachments/756903745241088011/775838126416723978/unknown.png' width = 300/>
+
+* **`!\<Flutterfire Command\> list`**
+  
+  We have few [Flutterfire](https://firebase.flutter.dev/) commands and they are listed below
+
+    * `!flutterfire list` - This command will give you the docs link about flutter firebase.
+
+        * Eg: `!flutterfire list`
+
+          <img src='https://cdn.discordapp.com/attachments/756903745241088011/775839137839710218/unknown.png' height=300/>
+
+    * `!flutterfire <your required docs>`
+
+        * docs
+        * analytics
+        * auth
+        * firestore
+        * functions
+        * messaging
+        * storage
+        * core
+        * crashlytics
+        * database
+        * remote-config
+        * performance
 
 ## Running the Bot ##
 
@@ -24,9 +103,9 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
     git clone https://github.com/yahu1031/FlutterBot.git
     ```
 
-2) Create a `.env` file in root folder.
+2) Create a `.env` file in root folder and paste this code given below.
 
-    ```txt
+    ```env
     BOT_TOKEN=your bot token
 
     PREFIX=!
@@ -40,6 +119,8 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
     MAINTAINERID=ID of the bot maintainer
 
     FLUTTERFIRE=https://firebase.flutter.dev/docs/
+
+    PUBAPIDOCS=https://pub.dev/documentation/
     ```
 
     > **Note:**
@@ -51,7 +132,7 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
 3) Get the dependency modules.
 
     ```sh
-    npm install
+    npm i
     ```
 
 4) Run the bot.
@@ -60,13 +141,15 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
     npm run start
     ```
 
+> **NOTE:** If you want to follow eslint and markdownlint please do install plugins for them.
+
 ## 👤 Author ##
 
 **Minnu**
 
 * Github: [@yahu1031](https://github.com/yahu1031)
 * Twitter: [@minnu6931](https://twitter.com/minnu6931)
-* Instagram: [\_son_of_raghava.rao\_](https://instagram.com/_son_of_raghava.rao_/)
+* Instagram: [@\_son_of_raghava.rao\_](https://instagram.com/_son_of_raghava.rao_/)
 
 ## 🤝 Contributing ##
 
@@ -83,18 +166,15 @@ This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) 
 
 ## New Changes ➕ ##
 
-1) Mentioning Bot will give you the information about what commands we have.
+Pub API documentaion for all [PUB packages](http://pub.dev/).
 
-2) Help argument for every command has been added.
-
-3) Added Colors to embeded messages.
-
-## Hidden ##
+## Hidden Commands ##
 
 Three commands has been hidden from the commands available.
-  * `!ask USER_ID`
-  * `!code`
-  * `!java install/jdk/jre`
+
+* `!ask <USER_ID>`
+* `!code`
+* `!java install/jdk/jre`
 
 ### Add this bot to your guild ###
 
@@ -104,7 +184,7 @@ Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth
 
 ## What's-up on the next update ##
 
-Pub API documentaion for all [PUB packages](http://pub.dev/) and [Flutterfire](https://firebase.flutter.dev/) packages. 
+Ahhhh...., not yet planed :rofl:.
 
 ***
 

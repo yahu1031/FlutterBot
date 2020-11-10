@@ -11,7 +11,7 @@ module.exports = {
         const flutterfireEmbed = new Discord.MessageEmbed()
             .setColor('#ffca28')
             .setAuthor('Flutterfire Docs')
-            .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
+            .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823133574692874/flutterfire.png')
             .setDescription('The official Firebase plugins for Flutter which really helps you and makes your learning easy.')
             .addField(`${args[0].charAt(0).toUpperCase() + args[0].slice(1)}  Docs`, `${flutterfire + args[0]}/overview`);
         if (arg === 'help') {
@@ -22,7 +22,7 @@ module.exports = {
                 new Discord.MessageEmbed()
                     .setColor('#ffca28')
                     .setTitle('__Flutterfire Docs commands__')
-                    .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
+                    .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823133574692874/flutterfire.png')
                     .setDescription('Here are the list of commands for **Flutterfire Docs**')
                     .addFields({
                         name: 'docs',
@@ -70,7 +70,7 @@ module.exports = {
             return message.channel.send(new Discord.MessageEmbed()
                 .setColor('#ffca28')
                 .setAuthor('Flutterfire Docs')
-                .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
+                .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823133574692874/flutterfire.png')
                 .setDescription('The firebase_core plugin is responsible for connecting your Flutter app to your Firebase project.')
                 .addField('Core Docs', `${flutterfire}core/usage`, false));
         }
@@ -78,7 +78,7 @@ module.exports = {
             return message.channel.send(new Discord.MessageEmbed()
                 .setColor('#ffca28')
                 .setAuthor('Flutterfire Docs')
-                .setThumbnail('https://firebase.flutter.dev/img/flutterfire_300x.png')
+                .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823133574692874/flutterfire.png')
                 .setDescription('FlutterFire is a set of Flutter plugins which connect your Flutter application to Firebase.')
                 .addField('FlutterFire Docs', `${flutterfire}overview`));
         }

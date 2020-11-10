@@ -8,7 +8,6 @@ module.exports = {
     execute(client, message, args) {
         const widget = args[0].toLowerCase();
         const pubAPIurl = client.pubApi + widget;
-        // Todo - Getting Data from API.
         const get_data = async () => {
             try {
                 const pubData = await fetch(pubAPIurl).then(response => response.json());
@@ -17,6 +16,7 @@ module.exports = {
                 if (widget === packageName.toLowerCase()) {
                     return message.channel.send(new Discord.MessageEmbed()
                         .setColor('#01579B')
+                        .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823137312210974/dart.png')
                         .setTitle(`Pub packages for search ${args[0]}`)
                         .addFields({
                             name: packageName,
