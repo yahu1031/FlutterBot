@@ -12,6 +12,7 @@ client.flutterApi = process.env.FLUTTERAPI;
 client.maintainerID = process.env.MAINTAINERID;
 client.docsLink = process.env.DOCSLINK;
 client.pubApi = process.env.PUBAPI;
+client.pubDocs = process.env.PUBAPIDOCS;
 
 //  ! Bin website sources
 client.binSites = new Discord.MessageEmbed()
@@ -115,7 +116,11 @@ client.on('message', message => {
                 client.notFoundMsg = new Discord.MessageEmbed()
                     .setColor('#ff0000')
                     .setTitle('Not Found')
-                    .setDescription(`Sorry, we couldn't able to fetch detailes about **${args[0]}**.`);
+                    .setDescription(`Sorry, we couldn't able to fetch details about **${args[0]}**.`);
+                client.noDocsFound = new Discord.MessageEmbed()
+                    .setColor('#ff0000')
+                    .setTitle('Not Found')
+                    .setDescription(`Sorry, we couldn't able to fetch Documentation about **${args[0]}**.`);
                 command.execute(client, message, args);
             }
             catch (error) {

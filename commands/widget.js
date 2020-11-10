@@ -6,8 +6,6 @@ module.exports = {
     args: true,
     description: 'This command will show the top Package/Object you are searching for.',
     execute(client, message, args) {
-        // console.log(client.flutterData);
-        // Todo - Getting Data from API.
         if (args[0] === 'help') {
             message.channel.send('**__Usage of topwidget command__** \n \n Use this command to get docs of the widget you are searching for. \n > `!topwidget <widget>` \n \n **__Eg__:** `!topwidget hero`');
         }
@@ -18,9 +16,10 @@ module.exports = {
                 );
                 const result = new Discord.MessageEmbed()
                     .setColor('#46D1FD')
+                    .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823132375515156/flutter.webp')
                     .setTitle(`Top result of ${topWidget.name}`)
                     .addFields({
-                        name: `${topWidget.type} ${topWidget.enclosedBy.name}`,
+                        name: topWidget.type + topWidget.enclosedBy.name,
                         value: client.docsLink + topWidget.href,
                     });
                 message.channel.send(result);

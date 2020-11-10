@@ -5,9 +5,7 @@ module.exports = {
     args: true,
     description: 'This command will show you the all Packages/Objects related to your search.',
     execute(client, message, args) {
-        //  Todo - Getting Data from API.
         const result = [];
-        //  Todo - Getting Data from API.
         if (args[0] === 'help') {
             message.channel.send('**__Usage of allwidgets command__** \n \n Use this command to know all widgets which matches your search widget. \n > `!allwidgets <widget>` \n \n **__Eg__:** `!allwidgets hero`');
         }
@@ -24,6 +22,7 @@ module.exports = {
                 }
                 const response = new Discord.MessageEmbed()
                     .setColor('#46D1FD')
+                    .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823132375515156/flutter.webp')
                     .setTitle(`All results for ${allWidgets[0].name} Widget/Object`)
                     .addFields(result);
                 message.channel.send(allWidgets.length != 0 ? response : client.notFoundMsg);

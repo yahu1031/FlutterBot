@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 const jreLink = 'https://www.oracle.com/java/technologies/javase-jre8-downloads.html';
 const jdkLink = 'https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html';
-const javaLogo = 'https://download.logo.wine/logo/Java_(programming_language)/Java_(programming_language)-Logo.wine.png';
+const javaLogo = 'https://cdn.discordapp.com/attachments/756903745241088011/775823134929715220/java.png';
 
 module.exports = {
     name: 'java',
