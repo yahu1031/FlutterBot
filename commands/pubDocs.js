@@ -30,6 +30,8 @@ module.exports = {
                 }
             }
             catch (err) {
+
+                console.log('❌️' + err.message);
                 return message.channel.send(client.noDocsFound);
             }
         };
