@@ -17,13 +17,13 @@
 
 > Steps to contribute something to this bot as follows
 
-1) [Learn Node.js :joy:](https://github.com/yahu1031/FlutterBot#learn-nodejs-joy).
-2) [Fork the project :fork_and_knife:](https://github.com/yahu1031/FlutterBot#fork-the-project-fork_and_knife).
-3) [Development Environment :hammer:](https://github.com/yahu1031/FlutterBot#development-environment-hammer).
-4) [Test server and bot account :zap:](https://github.com/yahu1031/FlutterBot#test-server-and-bot-account-zap).
-5) [Configure the bot :wrench:](https://github.com/yahu1031/FlutterBot#configure-the-bot-wrench).
-6) [Run the project :running:](https://github.com/yahu1031/FlutterBot#run-the-project-running).
-7) [Working with Git :man_technologist:](https://github.com/yahu1031/FlutterBot#working-with-git-man_technologist).
+1) [Learn Node.js :joy:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#learn-nodejs-joy).
+2) [Fork the project :fork_and_knife:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#fork-the-project-fork_and_knife).
+3) [Development Environment :hammer:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#development-environment-hammer).
+4) [Test server and bot account :zap:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#test-server-and-bot-account-zap).
+5) [Configure the bot :wrench:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#configure-the-bot-wrench).
+6) [Run the project :running:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#run-the-project-running).
+7) [Working with Git :man_technologist:](https://github.com/yahu1031/FlutterBot/blob/main/CONTRIBUTING.md#working-with-git-man_technologist).
 
 ## Get Started ##
 
