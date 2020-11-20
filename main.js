@@ -109,6 +109,9 @@ client.on('message', message => {
         message.channel.send('Hey bud, We would request you to kindly share your code in following bin sites.');
         return message.channel.send(client.binSites);
     }
+    else if (message.content.toLowerCase() === client.prefix + 'sourcecode') {
+        return message.channel.send('Hey bud, We appriciate your interest to develop the bot.\n Here is the source code for the FlutterBot. https://github.com/yahu1031/flutterbot');
+    }
     else {
         if (!client.commands.has(commandName) || !message.content.startsWith(client.prefix)) return;
         if (command.args && args.length) {
