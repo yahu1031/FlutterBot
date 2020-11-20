@@ -27,5 +27,15 @@
         "source.fixAll.markdownlint": true
     },
     "compile-hero.disable-compile-files-on-did-save-code": true,
-    "discord.enabled": true
+    "discord.enabled": true,
+    "grammarly.userWords": [
+        "allprop",
+        "allpub",
+        "allwidgets",
+        "eslint",
+        "flutterfire",
+        "markdownlint",
+        "rofl",
+        "topwidget"
+    ]
 }
