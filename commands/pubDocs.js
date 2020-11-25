@@ -11,26 +11,29 @@ module.exports = {
         const get_data = async () => {
             try {
                 const pubData = await fetch(pubDocsAPI).then(response => response.json());
-                const packageName = pubData[0].name;
-                const packageHref = pubData[0].href;
-                const link = client.pubDocs + packageName + '/latest/';
-                if (pubData.length === 0) return message.channel.send(client.notFoundMsg);
-                if (package === packageName.toLowerCase()) {
-                    return message.channel.send(new Discord.MessageEmbed()
-                        .setColor('#01579B')
-                        .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823137312210974/dart.png')
-                        .setTitle(`Documentation for ${args[0]}.`)
-                        .addFields({
-                            name: packageName,
-                            value: link + packageHref,
-                        }));
-                }
-                else {
-                    return message.channel.send(client.noDocsFound);
+                for (let i = 0; i < pubData.length; i++) {
+                    const packageName = pubData[i].name;
+                    const packageHref = pubData[i].href;
+                    if (package === packageName) {
+                        const link = client.pubDocs + packageName + '/latest/';
+                        if (pubData.length === 0) return message.channel.send(client.notFoundMsg);
+                        console.log(packageHref);
+                        return message.channel.send(new Discord.MessageEmbed()
+                            .setColor('#01579B')
+                            .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823137312210974/dart.png')
+                            .setTitle(`Documentation for ${args[0]}.`)
+                            .addFields({
+                                name: packageName,
+                                value: link + packageHref,
+                            }));
+                    }
+                    else {
+                        console.log(pubData);
+                        return message.channel.send(client.noDocsFound);
+                    }
                 }
             }
             catch (err) {
-
                 console.log('❌️' + err.message);
                 return message.channel.send(client.noDocsFound);
             }

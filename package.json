@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: No test specified\" && exit 1",
     "start": "node ./main.js",
-    "dev": "nodemon ./main.js"
+    "dev": "nodemon ./main.js",
+    "run":"node main.js",
+    "go":"node main.js"
   },
   "author": "minnu",
   "license": "MIT",

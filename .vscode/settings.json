@@ -34,8 +34,11 @@
         "allwidgets",
         "eslint",
         "flutterfire",
+        "imurmurhash",
         "markdownlint",
+        "minimist",
         "rofl",
+        "svg",
         "topwidget"
     ]
 }
