@@ -11,13 +11,12 @@ module.exports = {
         const get_data = async () => {
             try {
                 const pubData = await fetch(pubDocsAPI).then(response => response.json());
+                if (pubData.length === 0) return message.channel.send(client.notFoundMsg);
                 for (let i = 0; i < pubData.length; i++) {
                     const packageName = pubData[i].name;
                     const packageHref = pubData[i].href;
                     if (package === packageName) {
                         const link = client.pubDocs + packageName + '/latest/';
-                        if (pubData.length === 0) return message.channel.send(client.notFoundMsg);
-                        console.log(packageHref);
                         return message.channel.send(new Discord.MessageEmbed()
                             .setColor('#01579B')
                             .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823137312210974/dart.png')
@@ -27,11 +26,9 @@ module.exports = {
                                 value: link + packageHref,
                             }));
                     }
-                    else {
-                        console.log(pubData);
-                        return message.channel.send(client.noDocsFound);
-                    }
                 }
+                console.log(pubData);
+                return message.channel.send(client.noDocsFound);
             }
             catch (err) {
                 console.log('❌️' + err.message);
