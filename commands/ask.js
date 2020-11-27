@@ -2,7 +2,7 @@ module.exports = {
     name: 'ask',
     args: true,
     description: 'On ask command, the bot will send message that asking the user to ask the question instead of empty help.',
-    execute(message, args) {
+    execute(client, message, args) {
         if (args.length != 0) {
             // Checking the first argument is not a Not-A-Number.
             if (!isNaN(args[0])) {
