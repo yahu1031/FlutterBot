@@ -9,6 +9,9 @@ module.exports = {
     description: 'This will give you information about java installations.',
     args: true,
     execute(client, message, args) {
+        if (args[0] === 'help') {
+            return message.channel.send('**__Usage of java command__** \n \n Use this command for java8 download links. \n > `!java <argument>` \n \n **__Eg__:** `!java jre`\n\nFollowing arguments can be passed `jre`, `jdk`, `install`');
+        }
         if (args[0].toLowerCase() === 'jre') {
             return message.reply(new Discord.MessageEmbed()
                 .setColor('#f89615')

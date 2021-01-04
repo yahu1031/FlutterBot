@@ -8,7 +8,10 @@ module.exports = {
     description: 'This will give you information about ADB installations.',
     args: true,
     execute(client, message, args) {
-        if (args[0] === 'download') {
+        if (args[0] === 'help') {
+           return message.channel.send('**__Usage of adb command__** \n \n Use this command for adb download link for windows. \n > **__Eg__:** `!adb install`\n \nPlease do read the note of this command\'s result');
+        }
+        else if (args[0] === 'install') {
             return message.reply(new Discord.MessageEmbed()
                 .setColor('#78c259')
                 .setAuthor('Download ADB installer')
@@ -17,7 +20,7 @@ module.exports = {
                 .addFields({
                     name: 'ADB Installer',
                     value: `[**Download from here**](${adblink} "Download ADB now")\n `,
-                }).setTimestamp());
+                }).setTimestamp().setFooter('NOTE: This is for windows only, for mac and linux use "sudo apt-get install adb".\n'));
         }
     },
 };
