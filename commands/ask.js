@@ -11,7 +11,7 @@ module.exports = {
                     // Delete the user's message and send the bot's message.
                     // ^ Uncomment this code if you give this bot a moderator/message manageable role
                     // message.delete();
-                    return message.channel.send(`<@${args[0]}>, Stop asking for help without a question. Ask for help with your question included and tag helpers for a quicker reply.`);
+                    return message.channel.send(`<@${args[0]}>, Don't ask to ask. Just ask your question and provide details, code, images, output and any error logs.`);
                 }
             }
         }

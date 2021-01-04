@@ -14,6 +14,10 @@ client.docsLink = process.env.DOCSLINK;
 client.pubApi = process.env.PUBAPI;
 client.pubDocs = process.env.PUBAPIDOCS;
 
+// ! Survey link
+const survey = 'https://forms.gle/SEVo3z4RwM8CvjB96';
+const surveyImg = 'https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/google-forms.png';
+
 //  ! Bin website sources
 client.binSites = new Discord.MessageEmbed()
     .setColor('#')
@@ -88,6 +92,7 @@ process.on('unhandledRejection', error => {
     return console.error('❌️ Unhandled promise rejection: \n', error);
 });
 
+
 //  ! Listening to messages
 client.on('message', message => {
     // ! This makes your bot ignore other bots and itself
@@ -99,6 +104,21 @@ client.on('message', message => {
     if (message.channel.type === 'dm') {
         if (message.author.bot) return;
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
+    }
+    else if (message.content === client.prefix + 'survey') {
+        if (message.author.bot) return;
+        return message.reply(new Discord.MessageEmbed()
+            .setColor('#693db8')
+            .setAuthor('Survey')
+            .setThumbnail(surveyImg)
+            .setDescription('Ola 👋, We all know coming students were facing issues❗ with flutter setup. ' +
+                'To help them we are surveying common errors❌️ they are facing (we have faced in past) and their solutions✔️. ' +
+                'We will add this information ℹ️ to the Flutter-Bot🤖 to give them a really quick solution. ' +
+                'Please help fellow/upcoming members🧑🏻‍🤝‍🧑🏻 to solve the errors.❌️')
+            .addFields({
+                name: 'Flutter Errors and Solutions Survey',
+                value: `[**Take the survey**](${survey} "Go to survey")\n`,
+            }).setTimestamp());
     }
     else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);

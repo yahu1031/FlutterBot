@@ -6,7 +6,7 @@ const javaLogo = 'https://cdn.discordapp.com/attachments/756903745241088011/7758
 
 module.exports = {
     name: 'java',
-    description: 'This will check the message content length and checks if it is a code or not and tells the user to use temp bin sites to share code.',
+    description: 'This will give you information about java installations.',
     args: true,
     execute(client, message, args) {
         if (args[0].toLowerCase() === 'jre') {
