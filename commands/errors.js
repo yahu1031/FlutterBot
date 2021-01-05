@@ -2,8 +2,11 @@ const Discord = require('discord.js');
 
 // const adblink = 'https://download2032.mediafire.com/stdvudx807sg/hvevxm4zmocjnhd/15_Second_ADB_Installer_v1.5.3.zip';
 // const androidimg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Android_robot_2014.svg/151px-Android_robot_2014.svg.png';
-const thumbnail = 'https://cdn.discordapp.com/attachments/756903745241088011/795994905600196648/Group_38.png';
+const flutterimg = 'https://cdn.discordapp.com/attachments/756903745241088011/795994905600196648/Group_38.png';
 const licenseimg = 'https://cdn.discordapp.com/attachments/756903745241088011/795996485179015198/file_type_license_1_1.png';
+const sdkimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796080023227334666/th-removebg-preview.png';
+const dartimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796081901840105572/Group_39.png';
+const pluginimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796082433496973322/Group_40.png';
 
 module.exports = {
     name: 'error',
@@ -24,6 +27,34 @@ module.exports = {
                     value: '\nAfter installing Flutter in the system, run `flutter doctor --android-license` this command in terminal/cmd. ' +
                         'Now you will be asked to accept few conditions/policies. Enter `y` on every question. And now you are ready to go.',
                 }).setTimestamp());
+        }
+        else if (args[0] === 'sdk') {
+            return message.reply(new Discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setAuthor('Android SDK error')
+                .setThumbnail(sdkimg)
+                // .setDescription('**Android Debug Bridge**(adb) is a versatile command-line tool that lets you communicate with a device. This is recommended version to download.')
+                .addFields({
+                    name: '\n__Solution 1__\n',
+                    value: '\nAfter installing Flutter in the system, run `flutter doctor --android-license` this command in terminal/cmd. ' +
+                        'Now you will be asked to accept few conditions/policies. Enter `y` on every question. And now you are ready to go.',
+                }).setTimestamp());
+        }
+        else if (args[0] === 'plugin') {
+            return message.reply(new Discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setAuthor('Plugins not Installed')
+                .setThumbnail(pluginimg)
+                // .setDescription('**Android Debug Bridge**(adb) is a versatile command-line tool that lets you communicate with a device. This is recommended version to download.')
+                .addFields({
+                    name: 'Installed but issue?',
+                    value: 'Currently we don\'t have any fix for this issue. Hope in future we will get a working solution for this. You can ignore it if you have already installed them.',
+                },
+                    {
+                        name: 'Not Installed',
+                        value: 'If you haven\'t installed them yet then follow the steps.\n\n' +
+                            '**1.** Open settings(preferences)',
+                    }).setTimestamp());
         }
     },
 };

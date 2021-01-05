@@ -16,7 +16,7 @@ module.exports = {
                 if (args[0].includes('.')) {
                     if (property != '') {
                         const prop = client.flutterData.find(
-                            d => d.name.toLowerCase() === property && d.type === 'property' && d.qualifiedName.toLowerCase().includes(`.${widget}.${property}`),
+                            d => d.name.toLowerCase() === property && d.type != 'class' && d.type != 'constructor' && d.qualifiedName.toLowerCase().includes(`.${widget}.${property}`),
                         );
                         const embededLinks = new Discord.MessageEmbed()
                             .setColor('#46D1FD')
