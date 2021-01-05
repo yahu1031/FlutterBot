@@ -5,7 +5,7 @@
     "editor.formatOnPaste": true,
     "editor.fontSize": 16,
     "editor.fontWeight": "500",
-    "editor.fontFamily": "'Fira Code iScript', Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "Consolas, 'Courier New', monospace",
     "editor.formatOnType": true,
     "editor.formatOnSaveMode": "modifications",
     "editor.fontLigatures": true,
@@ -34,8 +34,13 @@
         "allwidgets",
         "eslint",
         "flutterfire",
+        "imurmurhash",
         "markdownlint",
+        "minimist",
         "rofl",
+        "svg",
         "topwidget"
-    ]
+    ],
+    "ponicode.testSettings.testLocation.locationType": "Same folder as source file",
+    "ponicode.testSettings.testLocation.path": "{rootDir}\\{filePath}\\{fileName}.test.{ext}"
 }

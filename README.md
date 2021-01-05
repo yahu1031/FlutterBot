@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.3.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.4.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -168,11 +168,13 @@ This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) 
 
 ***Major changes***
 
-Pub API documentation for all [PUB packages](http://pub.dev/).
+* Added new commands `!git`, `!adb`.
+* Added new help command `@FlutterBot support`.
+* Added errors survey.
 
 ***Minor Changes***
 
-Added functionality to fetch unlisted / hidden [PUB packages](http://pub.dev/).
+corrected spelling mistakes.
 
 ## Hidden Commands ##
 
@@ -180,7 +182,6 @@ Three commands have been hidden from the commands available.
 
 * `!ask <USER_ID>`
 * `!code`
-* `!java install/jdk/jre`
 
 ### Add this bot to your guild ###
 
@@ -190,7 +191,7 @@ Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth
 
 ## What's-up on the next update ##
 
-Ahhhh...., not yet planed :rofl: .
+* Error command to get a solution for the common errors during flutter installation.
 
 ***
 
