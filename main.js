@@ -97,7 +97,7 @@ process.on('unhandledRejection', error => {
 client.on('message', message => {
     // ! This makes your bot ignore other bots and itself
     // ! and not get into a spam loop (we call that "botception").
-    if (message.author.bot) return;
+    if (message.author.bot || message.content.includes('@everyone') || message.content.includes('@here')) return;
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
