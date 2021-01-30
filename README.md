@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.4.1-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.4.2-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -95,6 +95,8 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
         * remote-config
         * performance
 
+* **There are some other commands you can explaore by using `@Bot Name support`**
+
 ## Running the Bot ##
 
 1) Clone the repository.
@@ -103,24 +105,14 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
     git clone https://github.com/yahu1031/FlutterBot.git
     ```
 
-2) Create a `.env` file in the root folder and paste this code given below.
+2) Create a `.env` file in the project root directory and paste this code given below.
 
     ```env
     BOT_TOKEN=your bot token
 
     PREFIX=!
 
-    DOCSLINK=https://api.flutter.dev/flutter/
-
-    FLUTTERAPI=https://api.flutter.dev/flutter/index.json
-
-    PUBAPI=https://pub.dev/api/search?q=
-
     MAINTAINERID=ID of the bot maintainer
-
-    FLUTTERFIRE=https://firebase.flutter.dev/docs/
-
-    PUBAPIDOCS=https://pub.dev/documentation/
     ```
 
     > **Note:**
@@ -168,13 +160,15 @@ This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) 
 
 ***Major changes***
 
-* Added new commands `!git`, `!adb`.
-* Added new help command `@FlutterBot support`.
-* Added errors survey.
+* Removed API links from `.env` file and added to Code.
+
+* Git URLs and information was modified.
+
+* ADB files has been modified.
 
 ***Minor Changes***
 
-corrected spelling mistakes.
+corrected some logics.
 
 ## Hidden Commands ##
 
@@ -185,7 +179,9 @@ Three commands have been hidden from the commands available.
 
 ## Fixes ##
 
-Fixed responding to `@everyone` and `@here` tag roles.
+* Fixed responding to `@everyone` and `@here` tag roles.
+
+* Modified major links that are not propriate.
 
 ### Add this bot to your guild ###
 
@@ -194,6 +190,8 @@ Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth
 **NOTE:** By default this bot has Administrator rights. Please do change the rights as you wish after adding it to your guild or use this [Permissions Calculator](https://discordapi.com/permissions.html) to calculate permissions and add your bot ID to generate an invite link.
 
 ## What's-up on the next update ##
+
+* Need to fix [#37](https://github.com/yahu1031/FlutterBot/issues/37)🚨.
 
 * Error command to get a solution for the common errors during flutter installation.
 

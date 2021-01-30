@@ -7,7 +7,7 @@ module.exports = {
     execute(client, message, args) {
         const result = [];
         if (args[0] === 'help') {
-            message.channel.send('**__Usage of allwidgets command__** \n \n Use this command to know all widgets which matches your search widget. \n > `!allwidgets <widget>` \n \n **__Eg__:** `!allwidgets hero`');
+            return message.channel.send('**__Usage of allwidgets command__** \n \n Use this command to know all widgets which matches your search widget. \n > `!allwidgets <widget>` \n \n **__Eg__:** `!allwidgets hero`');
         }
         else {
             try {
@@ -25,8 +25,7 @@ module.exports = {
                     .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823132375515156/flutter.webp')
                     .setTitle(`All results for ${allWidgets[0].name} Widget/Object`)
                     .addFields(result);
-                message.channel.send(allWidgets.length != 0 ? response : client.notFoundMsg);
-                return;
+                return message.channel.send(allWidgets.length != 0 ? response : client.notFoundMsg);
             }
             catch (err) {
                 return (typeof allWidgets !== undefined) ?

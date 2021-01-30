@@ -8,7 +8,7 @@ module.exports = {
         const widget = args[0].toLowerCase();
         const result = [];
         if (args[0] === 'help') {
-            message.channel.send('**__Usage of allprop command__** \n \n Use this command to know all propeties of a widget. \n > `!allprop <widget>` \n \n **__Eg__:** `!allprop hero`');
+            return message.channel.send('**__Usage of allprop command__** \n \n Use this command to know all propeties of a widget. \n > `!allprop <widget>` \n \n **__Eg__:** `!allprop hero`');
         }
         else {
             try {
@@ -26,8 +26,7 @@ module.exports = {
                 .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823132375515156/flutter.webp')
                 .setTitle(`All properties of ${widget}`)
                 .addFields(result);
-            message.channel.send(result.length != 0 ? response : client.notFoundMsg);
-            return;
+            return message.channel.send(result.length != 0 ? response : client.notFoundMsg);
         }
         catch (err) {
             return (typeof allProp !== undefined) ?

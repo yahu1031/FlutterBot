@@ -22,8 +22,7 @@ module.exports = {
                         name: topWidget.type + topWidget.enclosedBy.name,
                         value: client.docsLink + topWidget.href,
                     });
-                message.channel.send(result);
-                return;
+                return message.channel.send(result);
             }
             catch (err) {
                 return (typeof topWidget !== undefined) ?

@@ -1,11 +1,7 @@
 const Discord = require('discord.js');
 
-// const adblink = 'https://download2032.mediafire.com/stdvudx807sg/hvevxm4zmocjnhd/15_Second_ADB_Installer_v1.5.3.zip';
-// const androidimg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Android_robot_2014.svg/151px-Android_robot_2014.svg.png';
-const flutterimg = 'https://cdn.discordapp.com/attachments/756903745241088011/795994905600196648/Group_38.png';
 const licenseimg = 'https://cdn.discordapp.com/attachments/756903745241088011/795996485179015198/file_type_license_1_1.png';
 const sdkimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796080023227334666/th-removebg-preview.png';
-const dartimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796081901840105572/Group_39.png';
 const pluginimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796082433496973322/Group_40.png';
 
 module.exports = {

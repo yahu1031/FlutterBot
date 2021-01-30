@@ -8,10 +8,11 @@ module.exports = {
             if (!isNaN(args[0])) {
                 // Checking the length of first argument is 18.
                 if (args[0].length === 18) {
-                    // Delete the user's message and send the bot's message.
-                    // ^ Uncomment this code if you give this bot a moderator/message manageable role
-                    // message.delete();
                     return message.channel.send(`<@${args[0]}>, Don't ask to ask. Just ask your question and provide details, code, images, output and any error logs.`);
+                    // Delete the user's message and send the bot's message.
+                    // ! Uncomment this code if you give this bot a moderator/message manageable role
+                    // ! and please remove the return in the above code
+                    // return message.delete();
                 }
             }
         }

@@ -1,17 +1,32 @@
 const Discord = require('discord.js');
 
-const adblink = 'https://download2032.mediafire.com/stdvudx807sg/hvevxm4zmocjnhd/15_Second_ADB_Installer_v1.5.3.zip';
-const androidimg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Android_robot_2014.svg/151px-Android_robot_2014.svg.png';
+
+const adbLink = 'https://dl.google.com/android/repository/platform-tools-latest-';
+const androidimg = 'https://download.logo.wine/logo/Android_(operating_system)/Android_(operating_system)-Robot-Logo.wine.png';
 
 module.exports = {
     name: 'adb',
     description: 'This will give you information about ADB installations.',
     args: true,
     execute(client, message, args) {
-        if (args[0] === 'help') {
-           return message.channel.send('**__Usage of adb command__** \n \n Use this command for adb download link for windows. \n > **__Eg__:** `!adb install`\n \nPlease do read the note of this command\'s result');
+        let platform;
+        switch (args[0]) {
+            case 'help':
+                return message.channel.send('**__Usage of adb command__** \n \n Use this command for adb download link for your prefered platform. \n > **__Eg__:** `!adb win`\n \nPlatforms to be passed with this command are `win`, `mac`, `linux`');
+            case 'win':
+                platform = 'windows';
+                break;
+            case 'mac':
+                platform = 'darwin';
+                break;
+            case 'linux':
+                platform = 'linux';
+                break;
+            default:
+                return message.channel.send('Sorry, No such command found. try `!adb help`');
         }
-        else if (args[0] === 'install') {
+        console.log(platform);
+        if (platform != 'undefined') {
             return message.reply(new Discord.MessageEmbed()
                 .setColor('#78c259')
                 .setAuthor('Download ADB installer')
@@ -19,8 +34,9 @@ module.exports = {
                 .setDescription('**Android Debug Bridge**(adb) is a versatile command-line tool that lets you communicate with a device. This is recommended version to download.')
                 .addFields({
                     name: 'ADB Installer',
-                    value: `[**Download from here**](${adblink} "Download ADB now")\n `,
-                }).setTimestamp().setFooter('NOTE: This is for windows only, for mac and linux use "sudo apt-get install adb".\n'));
+                    value: `[**Download from here**](${adbLink + platform + '.zip'} "Download ADB for ${platform}")\n `,
+                }).setTimestamp().setFooter('NOTE: After downloading this, please extract the ZIP file and copy the folder to your root directory and add the folder to path.\n'));
         }
+        return;
     },
 };
