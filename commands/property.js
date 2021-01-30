@@ -9,7 +9,7 @@ module.exports = {
         const widget = args[0].toLowerCase().split('.')[0];
         const property = args[0].toLowerCase().split('.')[1];
         if (args[0] === 'help') {
-            message.channel.send('**__Usage of prop command__** \n \n Use this command only if you want docs of particular propety of a widget. \n > `!prop <widget.tag>` \n \n **__Eg__:** `!prop hero.tag`');
+            return message.channel.send('**__Usage of prop command__** \n \n Use this command only if you want docs of particular propety of a widget. \n > `!prop <widget.tag>` \n \n **__Eg__:** `!prop hero.tag`');
         }
         else {
             try {

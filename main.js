@@ -8,11 +8,11 @@ const client = new Discord.Client();
 //  ! Environment variables.
 client.token = process.env.BOT_TOKEN;
 client.prefix = process.env.PREFIX;
-client.flutterApi = process.env.FLUTTERAPI;
+client.flutterApi = 'https://api.flutter.dev/flutter/index.json';
 client.maintainerID = process.env.MAINTAINERID;
-client.docsLink = process.env.DOCSLINK;
-client.pubApi = process.env.PUBAPI;
-client.pubDocs = process.env.PUBAPIDOCS;
+client.docsLink = 'https://api.flutter.dev/flutter/';
+client.pubApi = 'https://pub.dev/api/search?q=';
+client.pubDocs = 'https://pub.dev/documentation/';
 
 // ! Survey link
 const survey = 'https://forms.gle/SEVo3z4RwM8CvjB96';
