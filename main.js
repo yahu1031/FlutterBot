@@ -14,6 +14,8 @@ client.docsLink = 'https://api.flutter.dev/flutter/';
 client.pubApi = 'https://pub.dev/api/search?q=';
 client.pubDocs = 'https://pub.dev/documentation/';
 
+const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 // ! Survey link
 const survey = 'https://forms.gle/SEVo3z4RwM8CvjB96';
 const surveyImg = 'https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/google-forms.png';
@@ -95,9 +97,11 @@ process.on('unhandledRejection', error => {
 
 //  ! Listening to messages
 client.on('message', message => {
+    const prefixRegex = new RegExp(`^(<@!?${client.user.id}>|${escapeRegex(client.prefix)})\\s*`);
     // ! This makes your bot ignore other bots and itself
     // ! and not get into a spam loop (we call that "botception").
     if (message.author.bot || message.content.includes('@everyone') || message.content.includes('@here')) return;
+    if (!prefixRegex.test(message.content)) return;
     const args = message.content.slice(client.prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
     const command = client.commands.get(commandName);
