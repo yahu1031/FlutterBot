@@ -5,7 +5,7 @@
     "editor.formatOnPaste": true,
     "editor.fontSize": 16,
     "editor.fontWeight": "500",
-    "editor.fontFamily": "Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "'Victor Mono',Consolas, 'Courier New', monospace",
     "editor.formatOnType": true,
     "editor.formatOnSaveMode": "modifications",
     "editor.fontLigatures": true,
@@ -19,28 +19,10 @@
     "editor.multiCursorMergeOverlapping": true,
     "editor.multiCursorModifier": "alt",
     "editor.multiCursorPaste": "full",
-    "code-runner.saveAllFilesBeforeRun": true,
-    "code-runner.saveFileBeforeRun": true,
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.codeActionsOnSave": {
         "source.fixAll": true,
         "source.fixAll.eslint": true,
         "source.fixAll.markdownlint": true
-    },
-    "compile-hero.disable-compile-files-on-did-save-code": true,
-    "discord.enabled": true,
-    "grammarly.userWords": [
-        "allprop",
-        "allpub",
-        "allwidgets",
-        "eslint",
-        "flutterfire",
-        "imurmurhash",
-        "markdownlint",
-        "minimist",
-        "rofl",
-        "svg",
-        "topwidget"
-    ],
-    "ponicode.testSettings.testLocation.locationType": "Same folder as source file",
-    "ponicode.testSettings.testLocation.path": "{rootDir}\\{filePath}\\{fileName}.test.{ext}"
+    }
 }

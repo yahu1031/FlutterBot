@@ -179,9 +179,9 @@ Three commands have been hidden from the commands available.
 
 ## Fixes ##
 
-* Fixed responding to `@everyone` and `@here` tag roles.
-
 * Modified major links that are not propriate.
+
+* Fixed [#37](https://github.com/yahu1031/FlutterBot/issues/37)🚨.
 
 ### Add this bot to your guild ###
 
@@ -190,8 +190,6 @@ Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth
 **NOTE:** By default this bot has Administrator rights. Please do change the rights as you wish after adding it to your guild or use this [Permissions Calculator](https://discordapi.com/permissions.html) to calculate permissions and add your bot ID to generate an invite link.
 
 ## What's-up on the next update ##
-
-* Need to fix [#37](https://github.com/yahu1031/FlutterBot/issues/37)🚨.
 
 * Error command to get a solution for the common errors during flutter installation.
 
