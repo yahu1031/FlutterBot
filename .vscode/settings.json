@@ -19,6 +19,7 @@
     "editor.multiCursorMergeOverlapping": true,
     "editor.multiCursorModifier": "alt",
     "editor.multiCursorPaste": "full",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "code-runner.saveAllFilesBeforeRun": true,
     "code-runner.saveFileBeforeRun": true,
     "editor.codeActionsOnSave": {

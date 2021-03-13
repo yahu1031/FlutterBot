@@ -15,9 +15,7 @@ module.exports = {
             try {
                 if (args[0].includes('.')) {
                     if (property != '') {
-                        const prop = client.flutterData.find(
-                            d => d.name.toLowerCase() === property && d.type != 'class' && d.type != 'constructor' && d.qualifiedName.toLowerCase().includes(`.${widget}.${property}`),
-                        );
+                        const prop = client.flutterData.find(d => d.name.toLowerCase() === property && (d.qualifiedName.toLowerCase().includes(`${widget}.${property}`) || d.qualifiedName.toLowerCase().includes('widgets.')));
                         const embededLinks = new Discord.MessageEmbed()
                             .setColor('#46D1FD')
                             .setThumbnail('https://cdn.discordapp.com/attachments/756903745241088011/775823132375515156/flutter.webp')
