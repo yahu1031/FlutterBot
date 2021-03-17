@@ -5,13 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "name": "nodemon",
+            "program": "${workspaceFolder}/main.js",
             "request": "launch",
-            "name": "Launch Program",
+            "restart": true,
+            "runtimeExecutable": "nodemon",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\main.js"
-        }
+            "type": "node"
+        },
+        // {
+        //     "type": "node",
+        //     "request": "launch",
+        //     "name": "Launch Program",
+        //     "skipFiles": [
+        //         "<node_internals>/**"
+        //     ],
+        //     "program": "${workspaceFolder}\\main.js"
+        // },
     ]
 }
