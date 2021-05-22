@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 
-const jreLink = 'https://www.oracle.com/java/technologies/javase-jre8-downloads.html';
-const jdkLink = 'https://www.oracle.com/in/java/technologies/javase/javase-jdk8-downloads.html';
+const jreLink = 'https://drive.google.com/file/d/13F_kqUrjU9Dq-I8lQzoqTHmkSFxDalcx/view?usp=sharing';
+const jdkLink = 'https://drive.google.com/file/d/1RY0JjP-J0c_TUoTN8RDwZj3ZboAeRpvM/view?usp=sharing';
 const javaLogo = 'https://cdn.discordapp.com/attachments/756903745241088011/775823134929715220/java.png';
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
                 }, {
                     name: 'JRE 8u271',
                     value: `[**Download from here**](${jreLink} "Download JRE now")\n `,
-                }).setFooter('You must need an oracle account to download these.')
+                }).setFooter('We use version 8u291 whick are uploaded to drive cause Oracle downloads aren\'t working.')
                     .setTimestamp());
             case 'jre':
                 return message.reply(new Discord.MessageEmbed()
@@ -36,7 +36,7 @@ module.exports = {
                     name: 'JRE 8u271',
                     value: `[**Download**](${jreLink} "Download JRE now")`,
                 })
-                .setFooter('You must need an oracle account to download it.')
+                    .setFooter('We use version 8u291 whick are uploaded to drive cause Oracle downloads aren\'t working.')
                     .setTimestamp());
             case 'jdk':
                 return message.reply(new Discord.MessageEmbed()
@@ -48,7 +48,7 @@ module.exports = {
                     name: 'JDK 8u271',
                     value: `[**Download**](${jdkLink} "Download JDK now")`,
                 })
-                .setFooter('You must need an oracle account to download it.')
+                    .setFooter('We use version 8u291 whick are uploaded to drive cause Oracle downloads aren\'t working.')
                 .setTimestamp());
         }
     },
