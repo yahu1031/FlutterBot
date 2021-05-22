@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.4.3-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.4.4-stable--blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
@@ -160,15 +160,11 @@ This project is [MIT](https://github.com/yahu1031/FlutterBot/blob/main/LICENSE) 
 
 ***Major changes***
 
-* Removed API links from `.env` file and added to Code.
-
-* Git URLs and information was modified.
-
-* ADB files has been modified.
+> NOTHING MUCH
 
 ***Minor Changes***
 
-corrected some logics.
+Added version command
 
 ## Hidden Commands ##
 
@@ -179,9 +175,7 @@ Three commands have been hidden from the commands available.
 
 ## Fixes ##
 
-* Modified major links that are not propriate.
-
-* Fixed [#37](https://github.com/yahu1031/FlutterBot/issues/37)🚨.
+* Modified Java JRE and JDK links that are not currently working(22-05-2021).
 
 ### Add this bot to your guild ###
 

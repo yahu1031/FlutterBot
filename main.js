@@ -13,6 +13,7 @@ client.maintainerID = process.env.MAINTAINERID;
 client.docsLink = 'https://api.flutter.dev/flutter/';
 client.pubApi = 'https://pub.dev/api/search?q=';
 client.pubDocs = 'https://pub.dev/documentation/';
+client.version = '2.4.4-stable';
 
 const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
@@ -58,7 +59,7 @@ const get_data = async () => {
         console.log('Data fetched from API.....✔️');
         //  ! Checking if the fetched data is null.
         if (data != null) {
-            console.log(`${client.user.tag} has been logged in.....🌐`);
+            console.log(`${client.user.tag} ${client.version} has been logged in.....🌐`);
             //  ! Setting up the bot status.
             client.user.setPresence({
                 status: 'online',
@@ -109,7 +110,10 @@ client.on('message', message => {
         if (message.author.bot) return;
         return message.reply(`Sorry ${message.author}! I can't reply you here. Ask in the server, I can help you there.`);
     }
-    else if (message.content === client.prefix + 'survey') {
+    else if (message.content.includes(client.prefix + 'version')) {
+        return message.reply(`My current version is ${client.version} 😎`);
+    }
+    else if (message.content.includes(client.prefix + 'survey')) {
         if (message.author.bot) return;
         return message.reply(new Discord.MessageEmbed()
             .setColor('#693db8')
@@ -127,13 +131,13 @@ client.on('message', message => {
     else if (message.mentions.has(client.user.id)) {
         client.commands.get('mention').execute(message);
     }
-    else if (message.content === client.prefix + 'code') {
+    else if (message.content.includes(client.prefix + 'code')) {
         // Delete the user's message in 5mins, inform it by the bot's message.
         // message.delete({ timeout: 5 * 60 * 1000 });
         message.channel.send('Hey bud, We would request you to kindly share your code in following bin sites.');
         return message.channel.send(client.binSites);
     }
-    else if (message.content.toLowerCase() === client.prefix + 'sourcecode') {
+    else if (message.content.toLowerCase().includes(client.prefix + 'sourcecode')) {
         return message.channel.send('Hey bud, We appriciate your interest to develop the bot.\n Here is the source code for the FlutterBot. https://github.com/yahu1031/flutterbot');
     }
     else {
