@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-2.4.4-stable--blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-2.4.4--stable.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>

@@ -13,7 +13,7 @@ client.maintainerID = process.env.MAINTAINERID;
 client.docsLink = 'https://api.flutter.dev/flutter/';
 client.pubApi = 'https://pub.dev/api/search?q=';
 client.pubDocs = 'https://pub.dev/documentation/';
-client.version = '2.4.4-stable';
+client.version = '2.4.4-stable.1';
 
 const escapeRegex = str => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
