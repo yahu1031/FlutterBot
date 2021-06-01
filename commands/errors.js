@@ -4,12 +4,13 @@ const licenseimg = 'https://cdn.discordapp.com/attachments/756903745241088011/79
 const sdkimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796080023227334666/th-removebg-preview.png';
 const pluginimg = 'https://cdn.discordapp.com/attachments/756903745241088011/796082433496973322/Group_40.png';
 const adbImg = 'https://cdn.discordapp.com/attachments/756903745241088011/821089644699320330/Android_operating_system-Robot-Logo.wine_1.png';
+const studioImg = 'https://cdn.discordapp.com/attachments/756903745241088011/849151619941531648/Group_51.png';
 
 module.exports = {
     name: 'error',
     description: 'This will give you information about error you will find during installation.',
     args: true,
-    execute(client, message, args) {
+    execute(_client, message, args) {
         if (args[0] === 'help') {
             return message.channel.send('**__Usage of adb command__** \n \n Use this command for adb download link for windows. \n > **__Eg__:** `!adb install`\n \nPlease do read the note of this command\'s result');
         }
@@ -62,7 +63,31 @@ module.exports = {
                 .addFields(
                     {
                         name: 'ADB files exist but issue?',
-                        value: 'In this case, you just copy paste this path in your env path `C:\\Users\\%USERPROFILE%\\AppData\\Local\\Android\\Sdk\\platform-tools`(Windows only).',
+                        value: 'In this case, you just copy paste `paltform-tools`(found in Android SDK) path in your env path.',
+                    }).setTimestamp());
+        }
+        else if (args[0] === 'studio-path') {
+            return message.reply(new Discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setAuthor('Android studio not found')
+                .setThumbnail(studioImg)
+                .setDescription('Shows **Android studio  not found**, If you have already installed it please use the following command to fix it up. Else please download Android Studio.')
+                .addFields(
+                    {
+                        name: 'Command to fix the issue(Android studio)',
+                        value: '`flutter config --android-studio-dir="YOUR_STUDIO_DIR_PATH"`.',
+                    }).setFooter('NOTE : Make sure the path you choose must have `jre` folder in it.').setTimestamp());
+        }
+        else if (args[0] === 'sdk-path') {
+            return message.reply(new Discord.MessageEmbed()
+                .setColor('#ff0000')
+                .setAuthor('SDK path not found')
+                .setThumbnail(studioImg)
+                .setDescription('Shows **SDK was not found**, If you have already installed it please use the following command to fix it up. Else please download Android Studio.')
+                .addFields(
+                    {
+                        name: 'Command to fix the issue',
+                        value: '`flutter config --android-sdk="YOUR_SDK_DIR_PATH"`.',
                     }).setTimestamp());
         }
     },
