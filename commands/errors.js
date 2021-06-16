@@ -21,7 +21,7 @@ module.exports = {
                 .setThumbnail(licenseimg)
                 .addFields({
                     name: '\n__Solution__\n',
-                    value: '\nAfter installing Flutter in the system, run `flutter doctor --android-license` this command in terminal/cmd. ' +
+                    value: '\nAfter installing Flutter in the system, run `flutter doctor --android-licenses` this command in terminal/cmd. ' +
                         'Now you will be asked to accept few conditions/policies. Enter `y` on every question. And now you are ready to go.',
                 }).setTimestamp());
         }
