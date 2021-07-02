@@ -9,7 +9,7 @@ module.exports = {
         process.exec(args.join(' '), async (error, stdout) => {
             const response = (error || stdout);
             await message.channel.send('please wait...').then(async m => {
-                await m.delete({ timeout: 10000 });
+                await m.delete({ timeout: 5000 });
                 await message.channel.send(response,
                     { code: 'asciidoc', split: '\n' })
                     .catch(err => message.channel.send(`💔 Error: ${err.message}`));
