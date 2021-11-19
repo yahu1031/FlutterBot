@@ -1,1 +1,1 @@
-worker: node main.js
+web: ./dart-sdk/bin/dart ./bin/flutter_bot.dart

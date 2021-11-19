@@ -1,0 +1,61 @@
+# This file configures the static analysis results for your project (errors,
+# warnings, and lints).
+#
+# This enables the 'recommended' set of lints from `package:lints`.
+# This set helps identify many issues that may lead to problems when running
+# or consuming Dart code, and enforces writing Dart using a single, idiomatic
+# style and format.
+#
+# If you want a smaller set of lints you can change this to specify
+# 'package:lints/core.yaml'. These are just the most critical lints
+# (the recommended set includes the core lints).
+# The core lints are also what is used by pub.dev for scoring packages.
+
+include: package:lints/recommended.yaml
+
+# Uncomment the following section to specify additional rules.
+
+analyzer:
+  errors:
+    unused_local_variable: warning
+    invalid_assignment: warning
+    missing_return: error
+    annotate_overrides: error
+    always_specify_types: error
+    dead_code: warning
+    todo: ignore
+
+linter:
+  rules:
+    hash_and_equals: true
+    prefer_is_not_empty: true
+    always_specify_types: true
+    avoid_print: false
+    constant_identifier_names: true
+    non_constant_identifier_names: true
+    avoid_type_to_string: true
+    camel_case_types: true
+    empty_constructor_bodies: true
+    prefer_const_constructors: true
+    sort_constructors_first: true
+    prefer_single_quotes: true
+    avoid_empty_else: true
+    cancel_subscriptions: true
+    close_sinks: true
+    prefer_conditional_assignment: true
+    cast_nullable_to_non_nullable: true
+    omit_local_variable_types: false
+    avoid_returning_null_for_future: true
+    always_declare_return_types: true
+    avoid_returning_null: true
+    avoid_returning_null_for_void: true
+    avoid_returning_this: true
+    implementation_imports: false
+    avoid_void_async: true
+    unawaited_futures: true
+    await_only_futures: true
+    unnecessary_lambdas: true
+    unnecessary_await_in_return: true
+    unnecessary_final: true
+    sort_pub_dependencies: true
+    package_names: true
