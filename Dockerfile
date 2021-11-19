@@ -15,4 +15,4 @@ FROM subfuzion/dart:slim
 WORKDIR /app
 COPY --from=builder /app/bin/flutter_bot.exe /app
 
-CMD [ "./flutter_bot.exe" ]
+CMD [ "/app/bin/flutter_bot.exe" ]
