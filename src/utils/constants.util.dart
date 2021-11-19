@@ -4,7 +4,7 @@ import 'package:nyxx_interactions/interactions.dart';
 /// Bot general constants
 class BotConstants {
   /// Enviroment variables file name
-  static const String envFile = '.bot.env';
+  static const String envFile = '.env';
 
   /// Reg for finding role in user nickname
   static final RegExp _regExp = RegExp(r'\[\S*\] ');
