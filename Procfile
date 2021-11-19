@@ -1,1 +1,1 @@
-web: ./dart-sdk/bin/dart ./bin/flutter_bot.dart
+worker: ./dart-sdk/bin/dart ./bin/flutter_bot.dart
