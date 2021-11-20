@@ -16,7 +16,7 @@ class BotConstants {
   static String pubBaseUrl = 'https://pub.dev/packages/';
 
   /// Base URL for pub docs
-  static String pubDocsBaseUrl(String packageName) => 'https://pub.dev/documentation/$packageName/latest/';
+  static String pubDocsBaseUrl(String packageName) => 'https://pub.dev/documentation/$packageName/latest/index.html';
 
   static String pubPoster =
       'https://pub.dev/static/img/pub-dev-icon-cover-image.png?hash=vg86r2r3mbs62hiv4ldop0ife5um2g5g';
@@ -43,21 +43,15 @@ class MessageContent {
   /// User need to be admin.
   static MessageBuilder get needToBeAdmin => _messgaeContent('You need to be an admin to use this command');
 
-  /// Don't DM commands please.
-  static MessageBuilder get noDMs => _messgaeContent('Sorry you can\'t use this command in DMs.');
-
-  /// Don't use element ID in commands please.
-  static MessageBuilder get noIdPlease => _messgaeContent('Sorry, I don\'t support ID.');
-
   /// Exception message.
   static MessageBuilder exception(Object? e) => _messgaeContent('Something went wrong. \nException : ${e.toString()}');
-
-  /// Renaming done.
-  static MessageBuilder renameDone() => _messgaeContent('Renamed all the nick names.');
 
   /// Waiting message for long interactions.
   static MessageBuilder get waiting => _messgaeContent('waiting...');
 
   /// Custom message.
   static MessageBuilder custom(String message) => _messgaeContent(message);
+
+  /// Custom message with embed.
+  static MessageBuilder embed(String message, EmbedBuilder embed) => _messgaeContent(message)..embeds.add(embed);
 }

@@ -28,12 +28,9 @@ class Flutter {
     if (args == null || args.isEmpty) return null;
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
     for (Map<String, dynamic> widgetData in data!) {
-      if (widgetData['name'].toLowerCase() == args[0].toLowerCase() && widgetData['type'].toLowerCase() == 'class') {
-        print(widgetData);
-        return widgetData;
-      } else if (widgetData['enclosedBy'] != null &&
-          widgetData['enclosedBy']['name'].toString().toLowerCase() == args[0].toLowerCase()) {
-        print(widgetData);
+      if (widgetData['name'].toLowerCase() == args[0].toLowerCase() &&
+          (widgetData['enclosedBy']['name'].toLowerCase() == 'widgets' ||
+              widgetData['enclosedBy']['name'].toString().toLowerCase() == args[0].toLowerCase())) {
         return widgetData;
       }
     }
@@ -41,12 +38,11 @@ class Flutter {
   }
 
   /// This function will return the Widget's property.
-  static Future<Map<String, dynamic>?> getWidgetProperty(List<String> args, ProviderContainer ref) async {
-    String property = args[0].split('.')[1].toLowerCase();
+  static Future<Map<String, dynamic>?> getWidgetProperty(String widget, String property, ProviderContainer ref) async {
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
     for (Map<String, dynamic> propertyData in data!) {
       if (propertyData['name'].toLowerCase() == property &&
-          propertyData['qualifiedName'].toString().toLowerCase().contains(args[0].toLowerCase())) {
+          propertyData['qualifiedName'].toString().toLowerCase().contains(widget.toLowerCase())) {
         return propertyData;
       }
     }
@@ -54,12 +50,12 @@ class Flutter {
   }
 
   /// This function will return the list of properties of the widget.
-  static Future<List<Map<String, dynamic>>> getAllWidgetProperties(List<String> args, ProviderContainer ref) async {
+  static Future<List<Map<String, dynamic>>> getAllWidgetProperties(String widget, ProviderContainer ref) async {
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
     List<Map<String, dynamic>> properties = <Map<String, dynamic>>[];
     for (dynamic propertyData in data!) {
-      if (propertyData['qualifiedName'].toString().toLowerCase().contains(args[0].toLowerCase()) &&
-          propertyData['enclosedBy']['name'].toString().toLowerCase() == args[0].toLowerCase()) {
+      if (propertyData['qualifiedName'].toString().toLowerCase().contains(widget.toLowerCase()) &&
+          propertyData['enclosedBy']['name'].toString().toLowerCase() == widget.toLowerCase()) {
         properties.add(propertyData);
       }
     }
@@ -134,5 +130,19 @@ class Flutter {
     } catch (e) {
       print(e);
     }
+  }
+
+  /// This function returns the author name.
+  static Future<String?> getAuthorName(String package, ProviderContainer ref) async {
+    Map<String, dynamic>? packageData = await getPubPackage(package, ref);
+    String? author = packageData!['latest']['pubspec']['author'];
+    if (author == null) {
+      if (packageData['latest']['pubspec']['repository'] == null) {
+        return packageData['latest']['pubspec']['homepage'].toString().split('/')[3];
+      } else {
+        return packageData['latest']['pubspec']['repository'].toString().split('/')[3];
+      }
+    }
+    return author;
   }
 }

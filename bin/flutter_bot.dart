@@ -28,6 +28,4 @@ Future<void> main() async {
   await MusicEvent.onMusicEvent(cluster, container);
   await ClientReady.onReadyEvent(client, container);
   await MessageNotifier.onMsgEvent(client, container, cluster: cluster);
-  print('Client ID : $clientID');
-  print('Client : $client');
 }
