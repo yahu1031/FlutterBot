@@ -39,6 +39,32 @@ class MessageNotifier {
         /// and not get into a spam loop (we call that "botception").
         if (event.message.author.bot) return;
 
+        // Check if bot was mentioned
+        if (event.message.mentions.isNotEmpty) {
+          if (event.message.mentions.first.id == client.self.id) {
+            List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
+              EmbedFieldBuilder(
+                'Flutter Commands',
+                '!widget, !allwidgets, !prop, !allprop\nEG:\n`!widget Container`\n`!allwidgets container`\n`!prop hero.tag`\n`!allprop container`',
+              ),
+              EmbedFieldBuilder(
+                'Pub Commands',
+                '!pub, !allpub, !pubdocs\nEG:\n`!pub int`\n`!allpub intl`\n`!pubdocs intl`',
+              ),
+            ];
+            embed.title = 'Hey, I\'m FlutterBot!';
+            embed.fields.addAll(helpFields);
+            embed.color = Colors.custom(0x46D1FD);
+            embed.author = EmbedAuthorBuilder()
+              ..iconUrl = imageUrl['flutter']
+              ..name = 'help';
+            embed.timestamp = DateTime.now();
+            await event.message.channel.sendMessage(
+              componentMessageBuilder..embeds = <EmbedBuilder>[embed],
+            );
+          }
+        }
+
         /// Check if the message is a command.
         if (event.message.content.startsWith('!')) {
           /// Splitting the command to get the command name and the arguments.
@@ -73,7 +99,7 @@ class MessageNotifier {
                 EmbedFieldBuilder(
                   wtf!['name'],
                   BotConstants.flutterBaseUrl + wtf['href'].toString(),
-                  true,
+                  false,
                 ),
               );
               embed.thumbnailUrl = imageUrl['flutter'];
@@ -94,7 +120,7 @@ class MessageNotifier {
                 EmbedFieldBuilder(
                   wtf!['name'],
                   BotConstants.flutterBaseUrl + wtf['href'].toString(),
-                  true,
+                  false,
                 ),
               );
               embed.thumbnailUrl = imageUrl['flutter'];
