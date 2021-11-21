@@ -52,7 +52,9 @@ class MessageNotifier {
           /// Getting the arguments.
           List<String>? arguments = commandList.sublist(1);
 
-          if (arguments.isEmpty && event.message.mentions.isNotEmpty) {
+          /// Regex to find if the command has arguments with A-Za-z1-9._
+          RegExp regex = RegExp(r'^[A-Za-z1-9._]+$');
+          if (arguments.isEmpty || !regex.hasMatch(arguments[0])) {
             await event.message.channel.sendMessage(
               MessageContent.custom(
                 'Missing arguments name.\nTry `f!widget widget_name`.',
