@@ -47,6 +47,7 @@ class MessageNotifier {
         if (event.message.author.bot) return;
         // Check if bot was mentioned
         if (event.message.mentions.isNotEmpty) {
+          if (!event.message.content.contains('<@')) return;
           if (event.message.mentions.first.id == client.self.id) {
             List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
               EmbedFieldBuilder(
@@ -90,10 +91,10 @@ class MessageNotifier {
           /// else return the member.
           // Member? member = event.message is GuildMessage ? (event.message as GuildMessage).member : null;
 
-          if (arguments.isEmpty) {
+          if (arguments.isEmpty && event.message.mentions.isNotEmpty) {
             await event.message.channel.sendMessage(
               MessageContent.custom(
-                'Missing widget name.\nTry `!allpub widget_name`.',
+                'Missing arguments name.\nTry `!widget widget_name`.',
               ),
             );
             embed = resetEmbed;
@@ -266,7 +267,7 @@ class MessageNotifier {
               return;
             default:
               await event.message.channel.sendMessage(
-                MessageContent.custom('Wrong command'),
+                MessageContent.custom('Wrong command. Try mentioning the bot for commands.'),
               );
               embed = resetEmbed;
               return;
