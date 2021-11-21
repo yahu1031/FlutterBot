@@ -28,6 +28,7 @@ class MessageNotifier {
       })
       ..author = author
       ..timestamp = DateTime.now();
+    EmbedBuilder resetEmbed = embed;
     ComponentMessageBuilder componentMessageBuilder = ComponentMessageBuilder();
     try {
       /// Check if [client] is null.
@@ -37,8 +38,13 @@ class MessageNotifier {
       return client.onMessageReceived.listen((MessageReceivedEvent event) async {
         /// This makes your bot ignore other bots and itself
         /// and not get into a spam loop (we call that "botception").
+        embed = EmbedBuilder()
+          ..addFooter((EmbedFooterBuilder footer) {
+            footer.text = 'Source code : https://github.com/yahu1031/FlutterBot';
+            footer.iconUrl = 'https://avatars.githubusercontent.com/u/35523357?v=4';
+          })
+          ..timestamp = DateTime.now();
         if (event.message.author.bot) return;
-
         // Check if bot was mentioned
         if (event.message.mentions.isNotEmpty) {
           if (event.message.mentions.first.id == client.self.id) {
@@ -62,6 +68,8 @@ class MessageNotifier {
             await event.message.channel.sendMessage(
               componentMessageBuilder..embeds = <EmbedBuilder>[embed],
             );
+            embed = resetEmbed;
+            return;
           }
         }
 
@@ -88,6 +96,7 @@ class MessageNotifier {
                 'Missing widget name.\nTry `!allpub widget_name`.',
               ),
             );
+            embed = resetEmbed;
             return;
           }
           switch (command.toLowerCase()) {
@@ -106,7 +115,8 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              break;
+              embed = resetEmbed;
+              return;
             case 'prop':
               String? widget = arguments[0].toString().split('.')[0].toLowerCase();
               if (flex.contains(widget)) {
@@ -127,7 +137,8 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              break;
+              embed = resetEmbed;
+              return;
             case 'allprop':
               String widget = arguments[0];
               if (flex.contains(arguments[0])) {
@@ -152,8 +163,8 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-
-              break;
+              embed = resetEmbed;
+              return;
             case 'allwidgets':
               List<dynamic>? allWidgets = await Flutter.getSimilarWidgets(arguments, container);
               if (allWidgets.length > 10) {
@@ -184,7 +195,8 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              break;
+              embed = resetEmbed;
+              return;
             case 'pub':
               Map<dynamic, dynamic>? packageData = await Flutter.getPubPackage(arguments[0].toLowerCase(), container);
               if (packageData!['name'].toString() == 'null') {
@@ -193,6 +205,12 @@ class MessageNotifier {
                     'No package found.',
                   ),
                 );
+                embed = EmbedBuilder()
+                  ..addFooter((EmbedFooterBuilder footer) {
+                    footer.text = 'Source code : https://github.com/yahu1031/FlutterBot';
+                    footer.iconUrl = 'https://avatars.githubusercontent.com/u/35523357?v=4';
+                  });
+
                 return;
               }
               author.iconUrl = imageUrl['dart'];
@@ -205,7 +223,8 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              break;
+              embed = resetEmbed;
+              return;
             case 'allpub':
               author.iconUrl = imageUrl['dart'];
               embed.thumbnailUrl = imageUrl['dart'];
@@ -226,7 +245,8 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              break;
+              embed = resetEmbed;
+              return;
             case 'pubdocs':
               List<Map<String, dynamic>>? docs = await Flutter.getPubPackageDocs(arguments[0], container);
               Map<dynamic, dynamic>? packageData = await Flutter.getPubPackage(arguments[0].toLowerCase(), container);
@@ -242,12 +262,14 @@ class MessageNotifier {
                   componentMessageBuilder..embeds = <EmbedBuilder>[embed],
                 );
               }
-              break;
+              embed = resetEmbed;
+              return;
             default:
               await event.message.channel.sendMessage(
                 MessageContent.custom('Wrong command'),
               );
-              break;
+              embed = resetEmbed;
+              return;
           }
         }
       });
