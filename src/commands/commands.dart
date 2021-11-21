@@ -50,20 +50,20 @@ class Flutter {
   }
 
   /// This function will return the list of properties of the widget.
-  static Future<List<Map<String, dynamic>>> getAllWidgetProperties(String widget, ProviderContainer ref) async {
+  static Future<List<Map<String, dynamic>>?> getAllWidgetProperties(String widget, ProviderContainer ref) async {
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
-    List<Map<String, dynamic>> properties = <Map<String, dynamic>>[];
+    List<Map<String, dynamic>>? properties = <Map<String, dynamic>>[];
     for (dynamic propertyData in data!) {
       if (propertyData['qualifiedName'].toString().toLowerCase().contains(widget.toLowerCase()) &&
           propertyData['enclosedBy']['name'].toString().toLowerCase() == widget.toLowerCase()) {
         properties.add(propertyData);
       }
     }
-    return properties;
+    return properties.isEmpty ? null : properties;
   }
 
   /// This function will return the similar widgets.
-  static Future<List<Map<String, dynamic>>> getSimilarWidgets(List<String> args, ProviderContainer ref) async {
+  static Future<List<Map<String, dynamic>>?> getSimilarWidgets(List<String> args, ProviderContainer ref) async {
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
     List<Map<String, dynamic>> similarWidgets = <Map<String, dynamic>>[];
     for (dynamic widgetData in data!) {
@@ -72,7 +72,7 @@ class Flutter {
         similarWidgets.add(widgetData);
       }
     }
-    return similarWidgets;
+    return similarWidgets.isEmpty ? null : similarWidgets;
   }
 
   /// This function will return the pub package.
@@ -89,17 +89,17 @@ class Flutter {
   }
 
   /// This function will return the all pub packages.
-  static Future<List<Map<String, dynamic>>> getAllPubPackages(String package, ProviderContainer ref) async {
+  static Future<List<Map<String, dynamic>>?> getAllPubPackages(String package, ProviderContainer ref) async {
     try {
       // make the request
       http.Response response = await http.get(Uri.parse('https://pub.dev/api/search?q=$package'));
       // conver the response to list
       Map<String, dynamic> data = json.decode(response.body);
       List<Map<String, dynamic>> pubList = await data['packages'].cast<Map<String, dynamic>>();
-      return pubList;
+      return pubList.isEmpty ? null : pubList;
     } catch (e) {
       print(e);
-      return <Map<String, dynamic>>[];
+      return null;
     }
   }
 
@@ -112,9 +112,10 @@ class Flutter {
       if (response.body.contains('404 Not Found')) return <Map<String, dynamic>>[];
       // conver the response to list
       List<Map<String, dynamic>> data = await json.decode(response.body).cast<Map<String, dynamic>>();
-      return data;
+      return data.isEmpty ? null : data;
     } catch (e) {
       print(e);
+      return null;
     }
   }
 
@@ -126,9 +127,10 @@ class Flutter {
           await http.get(Uri.parse('https://pub.dev/documentation/$packageName/latest/index.json'));
       // conver the response to list
       Map<String, dynamic> data = json.decode(response.body);
-      return data;
+      return data.isEmpty ? null : data;
     } catch (e) {
       print(e);
+      return null;
     }
   }
 

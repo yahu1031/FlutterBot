@@ -66,14 +66,20 @@ class MessageNotifier {
             case 'widget':
               Map<dynamic, dynamic>? wtf = await Flutter.getWidget(arguments, container);
               embed.color = Colors.custom(0x46D1FD);
-              author.name = 'Top results of ${wtf!['name']}';
-              embed.fields.add(
-                EmbedFieldBuilder(
-                  wtf['name'],
-                  BotConstants.flutterBaseUrl + wtf['href'].toString(),
-                  false,
-                ),
-              );
+              if (wtf == null) {
+                author.name = 'Top results of ${arguments[0]}';
+                embed.description = 'Widget not found.';
+                embed.color = Colors.colors['red'];
+              } else {
+                author.name = 'Top results of ${wtf['name']}';
+                embed.fields.add(
+                  EmbedFieldBuilder(
+                    wtf['name'],
+                    BotConstants.flutterBaseUrl + wtf['href'].toString(),
+                    false,
+                  ),
+                );
+              }
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
@@ -104,19 +110,25 @@ class MessageNotifier {
                 widget = 'flex';
               }
               List<dynamic>? allProperties = await Flutter.getAllWidgetProperties(widget, container);
-              embed.color = Colors.custom(0x46D1FD);
-              author.name = 'All properties of ${allProperties[0]['name']}';
-              embed.url = BotConstants.flutterBaseUrl + allProperties[0]['href'].toString();
-              for (Map<String, dynamic> links in allProperties) {
-                if (links['enclosedBy']['name'] != links['name']) {
-                  embed.fields.add(
-                    EmbedFieldBuilder(
-                      links['name'],
-                      BotConstants.flutterBaseUrl + links['href'].toString(),
-                      false,
-                    ),
-                  );
+              if (allProperties != null) {
+                embed.color = Colors.custom(0x46D1FD);
+                author.name = 'All properties of ${allProperties[0]['name']}';
+                embed.url = BotConstants.flutterBaseUrl + allProperties[0]['href'].toString();
+                for (Map<String, dynamic> links in allProperties) {
+                  if (links['enclosedBy']['name'] != links['name']) {
+                    embed.fields.add(
+                      EmbedFieldBuilder(
+                        links['name'],
+                        BotConstants.flutterBaseUrl + links['href'].toString(),
+                        false,
+                      ),
+                    );
+                  }
                 }
+              } else {
+                author.name = 'All properties of ${arguments[0]}';
+                embed.description = 'Widget not found.';
+                embed.color = Colors.colors['red'];
               }
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
@@ -125,30 +137,36 @@ class MessageNotifier {
             case 'allwidgets':
               List<dynamic>? allWidgets = await Flutter.getSimilarWidgets(arguments, container);
               author.name = 'All widgets similar to ${arguments[0]}';
-              if (allWidgets.length > 10) {
-                StringBuffer buffer = StringBuffer();
-                for (Map<String, dynamic> links in allWidgets) {
-                  buffer.write('${links['name']}\n');
-                }
-                if (buffer.length > 2000) {
-                  buffer.clear();
-                  embed.title = 'Too many results';
-                  buffer.write('Please use `!allwidgets` with a more specific query.');
-                  embed.description = buffer.toString();
+              if (allWidgets != null) {
+                if (allWidgets.length > 10) {
+                  StringBuffer buffer = StringBuffer();
+                  for (Map<String, dynamic> links in allWidgets) {
+                    buffer.write('${links['name']}\n');
+                  }
+                  if (buffer.length > 2000) {
+                    buffer.clear();
+                    embed.title = 'Too many results';
+                    embed.color = Colors.colors['red'];
+                    buffer.write('Please use `!allwidgets` with a more specific query.');
+                    embed.description = buffer.toString();
+                  } else {
+                    embed.description = buffer.toString();
+                  }
                 } else {
-                  embed.description = buffer.toString();
+                  for (Map<String, dynamic> links in allWidgets) {
+                    embed.fields.add(
+                      EmbedFieldBuilder(
+                        links['name'],
+                        BotConstants.flutterBaseUrl + links['href'].toString(),
+                        false,
+                      ),
+                    );
+                    print(BotConstants.flutterBaseUrl + links['href']);
+                  }
                 }
               } else {
-                for (Map<String, dynamic> links in allWidgets) {
-                  embed.fields.add(
-                    EmbedFieldBuilder(
-                      links['name'],
-                      BotConstants.flutterBaseUrl + links['href'].toString(),
-                      false,
-                    ),
-                  );
-                  print(BotConstants.flutterBaseUrl + links['href']);
-                }
+                embed.description = 'Widget similar not found.';
+                embed.color = Colors.colors['red'];
               }
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
@@ -156,25 +174,22 @@ class MessageNotifier {
               return;
             case 'pub':
               Map<dynamic, dynamic>? packageData = await Flutter.getPubPackage(arguments[0].toLowerCase(), container);
-              if (packageData!['name'] == null) {
+              if (packageData == null || packageData['code'] == 'NotFound') {
+                embed.title = 'Not found';
+                embed.description = 'Package not found.';
+                embed.color = Colors.colors['red'];
                 await event.message.channel.sendMessage(
-                  MessageContent.custom(
-                    'No package found.',
-                  ),
+                  componentMessageBuilder..embeds = <EmbedBuilder>[embed],
                 );
-                embed = EmbedBuilder()
-                  ..addFooter((EmbedFooterBuilder footer) {
-                    footer.text = 'Source code : https://github.com/yahu1031/FlutterBot';
-                    footer.iconUrl = 'https://avatars.githubusercontent.com/u/35523357?v=4';
-                  });
                 return;
+              } else {
+                author.iconUrl = imageUrl['dart'];
+                author.name = await Flutter.getAuthorName(packageData['name'], container);
+                embed.color = Colors.custom(0x01579B);
+                embed.title = packageData['name'] + ' - ' + packageData['latest']['version'];
+                embed.description = packageData['latest']['pubspec']['description'];
+                embed.url = BotConstants.pubBaseUrl + packageData['name'].toString();
               }
-              author.iconUrl = imageUrl['dart'];
-              author.name = await Flutter.getAuthorName(packageData['name'], container);
-              embed.color = Colors.custom(0x01579B);
-              embed.title = packageData['name'] + ' - ' + packageData['latest']['version'];
-              embed.description = packageData['latest']['pubspec']['description'];
-              embed.url = BotConstants.pubBaseUrl + packageData['name'].toString();
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
@@ -185,14 +200,23 @@ class MessageNotifier {
               author.name = 'Top 10 packages of ${arguments[0]}';
               List<Map<String, dynamic>>? allPub =
                   await Flutter.getAllPubPackages(arguments[0].toLowerCase(), container);
-              for (Map<String, dynamic> links in allPub) {
-                embed.fields.add(
-                  EmbedFieldBuilder(
-                    links['package'],
-                    BotConstants.pubBaseUrl + links['package'].toString(),
-                    false,
-                  ),
+              if (allPub == null) {
+                embed.title = 'Not found';
+                embed.description = 'Package not found.';
+                embed.color = Colors.colors['red'];
+                await event.message.channel.sendMessage(
+                  componentMessageBuilder..embeds = <EmbedBuilder>[embed],
                 );
+              } else {
+                for (Map<String, dynamic> links in allPub) {
+                  embed.fields.add(
+                    EmbedFieldBuilder(
+                      links['package'],
+                      BotConstants.pubBaseUrl + links['package'].toString(),
+                      false,
+                    ),
+                  );
+                }
               }
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
@@ -201,17 +225,27 @@ class MessageNotifier {
             case 'pubdocs':
               List<Map<String, dynamic>>? docs = await Flutter.getPubPackageDocs(arguments[0], container);
               Map<dynamic, dynamic>? packageData = await Flutter.getPubPackage(arguments[0].toLowerCase(), container);
-              embed.title = 'Documentation of ${arguments[0]} - ${packageData!['latest']['version']}';
-              author.iconUrl = imageUrl['dart'];
-              author.name = await Flutter.getAuthorName(packageData['name'], container);
-              if (docs!.isEmpty) {
-                embed.description = 'No documentation found.';
-              } else {
-                embed.description = packageData['latest']['pubspec']['description'];
-                embed.url = BotConstants.pubDocsBaseUrl(arguments[0]);
+              if (packageData == null || docs == null) {
+                embed.title = 'Not found';
+                embed.description = 'Package not found.';
+                embed.color = Colors.colors['red'];
                 await event.message.channel.sendMessage(
                   componentMessageBuilder..embeds = <EmbedBuilder>[embed],
                 );
+                return;
+              } else {
+                embed.title = 'Documentation of ${arguments[0]} - ${packageData['latest']['version']}';
+                author.iconUrl = imageUrl['dart'];
+                author.name = await Flutter.getAuthorName(packageData['name'], container);
+                if (docs.isEmpty) {
+                  embed.description = 'No documentation found.';
+                } else {
+                  embed.description = packageData['latest']['pubspec']['description'];
+                  embed.url = BotConstants.pubDocsBaseUrl(arguments[0]);
+                  await event.message.channel.sendMessage(
+                    componentMessageBuilder..embeds = <EmbedBuilder>[embed],
+                  );
+                }
               }
               return;
             case 'help':
