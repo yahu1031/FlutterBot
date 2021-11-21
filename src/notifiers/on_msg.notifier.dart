@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:nyxx_interactions/interactions.dart';
 
 import '../commands/commands.dart';
+import '../services/load_env.util.dart';
 import '../utils/colors.util.dart';
 import './../services/logs.dart';
 import './../utils/constants.util.dart';
@@ -41,12 +42,12 @@ class MessageNotifier {
         if (event.message.author.bot) return;
 
         /// Check if the message is a command.
-        if (event.message.content.startsWith('!')) {
+        if (event.message.content.startsWith(container.read(atBotEnvProvider).prefix!)) {
           /// Splitting the command to get the command name and the arguments.
           List<String>? commandList = event.message.content.split(' ');
 
           /// Getting the command name.
-          String? command = commandList[0].substring(1);
+          String? command = commandList[0].substring(2);
 
           /// Getting the arguments.
           List<String>? arguments = commandList.sublist(1);
@@ -54,7 +55,7 @@ class MessageNotifier {
           if (arguments.isEmpty && event.message.mentions.isNotEmpty) {
             await event.message.channel.sendMessage(
               MessageContent.custom(
-                'Missing arguments name.\nTry `!widget widget_name`.',
+                'Missing arguments name.\nTry `f!widget widget_name`.',
               ),
             );
             return;
@@ -215,11 +216,11 @@ class MessageNotifier {
               List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
                 EmbedFieldBuilder(
                   'Flutter Commands',
-                  '!widget, !allwidgets, !prop, !allprop\nEG:\n`!widget Container`\n`!allwidgets container`\n`!prop hero.tag`\n`!allprop container`',
+                  'f!widget, f!allwidgets, f!prop, f!allprop\nEG:\n`f!widget Container`\n`f!allwidgets container`\n`f!prop hero.tag`\n`f!allprop container`',
                 ),
                 EmbedFieldBuilder(
                   'Pub Commands',
-                  '!pub, !allpub, !pubdocs\nEG:\n`!pub int`\n`!allpub intl`\n`!pubdocs intl`',
+                  'f!pub, f!allpub, f!pubdocs\nEG:\n`f!pub int`\n`f!allpub intl`\n`f!pubdocs intl`',
                 ),
               ];
               embed.title = 'Hey, I\'m FlutterBot!';
@@ -236,7 +237,7 @@ class MessageNotifier {
             default:
               await event.message.channel.sendMessage(
                 MessageContent.custom(
-                  'Invalid command.\nUse `!help` to see all commands.',
+                  'Invalid command.\nUse `f!help` to see all commands.',
                 ),
               );
               break;
