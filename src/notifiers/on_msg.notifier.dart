@@ -18,61 +18,27 @@ class MessageNotifier {
       'dart': 'https://cdn.discordapp.com/attachments/756903745241088011/775823137312210974/dart.png',
     };
     List<String> flex = <String>['column', 'row', 'expanded', 'flexible', 'spacer'];
-    EmbedAuthorBuilder author = EmbedAuthorBuilder()
-      ..name = 'Author not provided'
-      ..iconUrl = imageUrl['flutter'];
-    EmbedBuilder embed = EmbedBuilder()
-      ..addFooter((EmbedFooterBuilder footer) {
-        footer.text = 'Source code : https://github.com/yahu1031/FlutterBot';
-        footer.iconUrl = 'https://avatars.githubusercontent.com/u/35523357?v=4';
-      })
-      ..author = author
-      ..timestamp = DateTime.now();
-    EmbedBuilder resetEmbed = embed;
-    ComponentMessageBuilder componentMessageBuilder = ComponentMessageBuilder();
     try {
       /// Check if [client] is null.
       if (client == null) throw NullThrownError();
 
       /// Listening on message recived.
       return client.onMessageReceived.listen((MessageReceivedEvent event) async {
-        /// This makes your bot ignore other bots and itself
-        /// and not get into a spam loop (we call that "botception").
-        embed = EmbedBuilder()
+        EmbedAuthorBuilder author = EmbedAuthorBuilder()
+          ..name = 'Author not provided'
+          ..iconUrl = imageUrl['flutter'];
+        EmbedBuilder embed = EmbedBuilder()
           ..addFooter((EmbedFooterBuilder footer) {
             footer.text = 'Source code : https://github.com/yahu1031/FlutterBot';
             footer.iconUrl = 'https://avatars.githubusercontent.com/u/35523357?v=4';
           })
+          ..author = author
           ..timestamp = DateTime.now();
+        ComponentMessageBuilder componentMessageBuilder = ComponentMessageBuilder();
+
+        /// This makes your bot ignore other bots and itself
+        /// and not get into a spam loop (we call that "botception").
         if (event.message.author.bot) return;
-        // Check if bot was mentioned
-        if (event.message.mentions.isNotEmpty) {
-          if (!event.message.content.contains('<@')) return;
-          if (event.message.mentions.first.id == client.self.id) {
-            List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
-              EmbedFieldBuilder(
-                'Flutter Commands',
-                '!widget, !allwidgets, !prop, !allprop\nEG:\n`!widget Container`\n`!allwidgets container`\n`!prop hero.tag`\n`!allprop container`',
-              ),
-              EmbedFieldBuilder(
-                'Pub Commands',
-                '!pub, !allpub, !pubdocs\nEG:\n`!pub int`\n`!allpub intl`\n`!pubdocs intl`',
-              ),
-            ];
-            embed.title = 'Hey, I\'m FlutterBot!';
-            embed.fields.addAll(helpFields);
-            embed.color = Colors.custom(0x46D1FD);
-            embed.author = EmbedAuthorBuilder()
-              ..iconUrl = imageUrl['flutter']
-              ..name = 'help';
-            embed.timestamp = DateTime.now();
-            await event.message.channel.sendMessage(
-              componentMessageBuilder..embeds = <EmbedBuilder>[embed],
-            );
-            embed = resetEmbed;
-            return;
-          }
-        }
 
         /// Check if the message is a command.
         if (event.message.content.startsWith('!')) {
@@ -85,38 +51,29 @@ class MessageNotifier {
           /// Getting the arguments.
           List<String>? arguments = commandList.sublist(1);
 
-          /// Getting the command name.
-
-          /// Check if the message is GuildMessage, if not, return null.
-          /// else return the member.
-          // Member? member = event.message is GuildMessage ? (event.message as GuildMessage).member : null;
-
           if (arguments.isEmpty && event.message.mentions.isNotEmpty) {
             await event.message.channel.sendMessage(
               MessageContent.custom(
                 'Missing arguments name.\nTry `!widget widget_name`.',
               ),
             );
-            embed = resetEmbed;
             return;
           }
           switch (command.toLowerCase()) {
             case 'widget':
               Map<dynamic, dynamic>? wtf = await Flutter.getWidget(arguments, container);
               embed.color = Colors.custom(0x46D1FD);
-              embed.title = 'Top results of ${arguments[0]}';
+              author.name = 'Top results of ${wtf!['name']}';
               embed.fields.add(
                 EmbedFieldBuilder(
-                  wtf!['name'],
+                  wtf['name'],
                   BotConstants.flutterBaseUrl + wtf['href'].toString(),
                   false,
                 ),
               );
-              embed.thumbnailUrl = imageUrl['flutter'];
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              embed = resetEmbed;
               return;
             case 'prop':
               String? widget = arguments[0].toString().split('.')[0].toLowerCase();
@@ -126,19 +83,17 @@ class MessageNotifier {
               String? property = arguments[0].toString().split('.')[1];
               Map<dynamic, dynamic>? wtf = await Flutter.getWidgetProperty(widget, property, container);
               embed.color = Colors.custom(0x46D1FD);
-              embed.title = 'Top results of $property in ${arguments[0].toString().split('.')[0]}';
+              author.name = 'Top results of $property in ${wtf!['enclosedBy']['name']}';
               embed.fields.add(
                 EmbedFieldBuilder(
-                  wtf!['name'],
+                  wtf['name'],
                   BotConstants.flutterBaseUrl + wtf['href'].toString(),
                   false,
                 ),
               );
-              embed.thumbnailUrl = imageUrl['flutter'];
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              embed = resetEmbed;
               return;
             case 'allprop':
               String widget = arguments[0];
@@ -147,9 +102,8 @@ class MessageNotifier {
               }
               List<dynamic>? allProperties = await Flutter.getAllWidgetProperties(widget, container);
               embed.color = Colors.custom(0x46D1FD);
-              embed.title = 'All properties of ${allProperties[0]['name']}';
+              author.name = 'All properties of ${allProperties[0]['name']}';
               embed.url = BotConstants.flutterBaseUrl + allProperties[0]['href'].toString();
-              embed.thumbnailUrl = imageUrl['flutter'];
               for (Map<String, dynamic> links in allProperties) {
                 if (links['enclosedBy']['name'] != links['name']) {
                   embed.fields.add(
@@ -164,10 +118,10 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              embed = resetEmbed;
               return;
             case 'allwidgets':
               List<dynamic>? allWidgets = await Flutter.getSimilarWidgets(arguments, container);
+              author.name = 'All widgets similar to ${arguments[0]}';
               if (allWidgets.length > 10) {
                 StringBuffer buffer = StringBuffer();
                 for (Map<String, dynamic> links in allWidgets) {
@@ -196,11 +150,10 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              embed = resetEmbed;
               return;
             case 'pub':
               Map<dynamic, dynamic>? packageData = await Flutter.getPubPackage(arguments[0].toLowerCase(), container);
-              if (packageData!['name'].toString() == 'null') {
+              if (packageData!['name'] == null) {
                 await event.message.channel.sendMessage(
                   MessageContent.custom(
                     'No package found.',
@@ -211,7 +164,6 @@ class MessageNotifier {
                     footer.text = 'Source code : https://github.com/yahu1031/FlutterBot';
                     footer.iconUrl = 'https://avatars.githubusercontent.com/u/35523357?v=4';
                   });
-
                 return;
               }
               author.iconUrl = imageUrl['dart'];
@@ -220,20 +172,16 @@ class MessageNotifier {
               embed.title = packageData['name'] + ' - ' + packageData['latest']['version'];
               embed.description = packageData['latest']['pubspec']['description'];
               embed.url = BotConstants.pubBaseUrl + packageData['name'].toString();
-              embed.thumbnailUrl = imageUrl['dart'];
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              embed = resetEmbed;
               return;
             case 'allpub':
               author.iconUrl = imageUrl['dart'];
-              embed.thumbnailUrl = imageUrl['dart'];
               embed.color = Colors.custom(0x01579B);
-              embed.title = 'Top 10 packages of ${arguments[0]}';
+              author.name = 'Top 10 packages of ${arguments[0]}';
               List<Map<String, dynamic>>? allPub =
                   await Flutter.getAllPubPackages(arguments[0].toLowerCase(), container);
-              author.name = 'Pub packages';
               for (Map<String, dynamic> links in allPub) {
                 embed.fields.add(
                   EmbedFieldBuilder(
@@ -246,12 +194,11 @@ class MessageNotifier {
               await event.message.channel.sendMessage(
                 componentMessageBuilder..embeds = <EmbedBuilder>[embed],
               );
-              embed = resetEmbed;
               return;
             case 'pubdocs':
               List<Map<String, dynamic>>? docs = await Flutter.getPubPackageDocs(arguments[0], container);
               Map<dynamic, dynamic>? packageData = await Flutter.getPubPackage(arguments[0].toLowerCase(), container);
-              embed.title = 'Documentation of ${arguments[0]} - version ${packageData!['latest']['version']}';
+              embed.title = 'Documentation of ${arguments[0]} - ${packageData!['latest']['version']}';
               author.iconUrl = imageUrl['dart'];
               author.name = await Flutter.getAuthorName(packageData['name'], container);
               if (docs!.isEmpty) {
@@ -263,14 +210,36 @@ class MessageNotifier {
                   componentMessageBuilder..embeds = <EmbedBuilder>[embed],
                 );
               }
-              embed = resetEmbed;
+              return;
+            case 'help':
+              List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
+                EmbedFieldBuilder(
+                  'Flutter Commands',
+                  '!widget, !allwidgets, !prop, !allprop\nEG:\n`!widget Container`\n`!allwidgets container`\n`!prop hero.tag`\n`!allprop container`',
+                ),
+                EmbedFieldBuilder(
+                  'Pub Commands',
+                  '!pub, !allpub, !pubdocs\nEG:\n`!pub int`\n`!allpub intl`\n`!pubdocs intl`',
+                ),
+              ];
+              embed.title = 'Hey, I\'m FlutterBot!';
+              embed.fields.addAll(helpFields);
+              embed.color = Colors.custom(0x46D1FD);
+              embed.author = EmbedAuthorBuilder()
+                ..iconUrl = imageUrl['flutter']
+                ..name = 'help';
+              embed.timestamp = DateTime.now();
+              await event.message.channel.sendMessage(
+                componentMessageBuilder..embeds = <EmbedBuilder>[embed],
+              );
               return;
             default:
               await event.message.channel.sendMessage(
-                MessageContent.custom('Wrong command. Try mentioning the bot for commands.'),
+                MessageContent.custom(
+                  'Invalid command.\nUse `!help` to see all commands.',
+                ),
               );
-              embed = resetEmbed;
-              return;
+              break;
           }
         }
       });
