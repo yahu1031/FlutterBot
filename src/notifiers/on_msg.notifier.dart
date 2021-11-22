@@ -55,6 +55,29 @@ class MessageNotifier {
           /// Regex to find if the command has arguments with A-Za-z1-9._
           RegExp regex = RegExp(r'^[A-Za-z1-9._]+$');
           if (arguments.isEmpty || !regex.hasMatch(arguments[0])) {
+            if (command.toLowerCase() == 'help') {
+              List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
+                EmbedFieldBuilder(
+                  'Flutter Commands',
+                  'f!widget, f!allwidgets, f!prop, f!allprop\nEG:\n`f!widget Container`\n`f!allwidgets container`\n`f!prop hero.tag`\n`f!allprop container`',
+                ),
+                EmbedFieldBuilder(
+                  'Pub Commands',
+                  'f!pub, f!allpub, f!pubdocs\nEG:\n`f!pub int`\n`f!allpub intl`\n`f!pubdocs intl`',
+                ),
+              ];
+              embed.title = 'Hey, I\'m FlutterBot!';
+              embed.fields.addAll(helpFields);
+              embed.color = Colors.custom(0x46D1FD);
+              embed.author = EmbedAuthorBuilder()
+                ..iconUrl = imageUrl['flutter']
+                ..name = 'help';
+              embed.timestamp = DateTime.now();
+              await event.message.channel.sendMessage(
+                componentMessageBuilder..embeds = <EmbedBuilder>[embed],
+              );
+              return;
+            }
             await event.message.channel.sendMessage(
               MessageContent.custom(
                 'Missing arguments name.\nTry `f!widget widget_name`.',
@@ -247,28 +270,6 @@ class MessageNotifier {
                   );
                 }
               }
-              return;
-            case 'help':
-              List<EmbedFieldBuilder> helpFields = <EmbedFieldBuilder>[
-                EmbedFieldBuilder(
-                  'Flutter Commands',
-                  'f!widget, f!allwidgets, f!prop, f!allprop\nEG:\n`f!widget Container`\n`f!allwidgets container`\n`f!prop hero.tag`\n`f!allprop container`',
-                ),
-                EmbedFieldBuilder(
-                  'Pub Commands',
-                  'f!pub, f!allpub, f!pubdocs\nEG:\n`f!pub int`\n`f!allpub intl`\n`f!pubdocs intl`',
-                ),
-              ];
-              embed.title = 'Hey, I\'m FlutterBot!';
-              embed.fields.addAll(helpFields);
-              embed.color = Colors.custom(0x46D1FD);
-              embed.author = EmbedAuthorBuilder()
-                ..iconUrl = imageUrl['flutter']
-                ..name = 'help';
-              embed.timestamp = DateTime.now();
-              await event.message.channel.sendMessage(
-                componentMessageBuilder..embeds = <EmbedBuilder>[embed],
-              );
               return;
             default:
               await event.message.channel.sendMessage(
