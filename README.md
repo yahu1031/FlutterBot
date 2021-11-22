@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to flutter-bot 🤖</h1>
+<!-- <h1 align="center">Welcome to flutter-bot 🤖</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-2.4.4--stable.1-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/yahu1031/FlutterBot#readme" target="_blank">
@@ -190,4 +190,4 @@ Click on the bot to add this to your guild. [🤖](https://discord.com/api/oauth
 ***
 
 <p align="center"> Made with 💚, From Minnu. </p> <br />
-<p align="center">All assets used in this project related to flutter are taken directly from <a href="https://flutter.dev">Flutter.dev</a></p>
+<p align="center">All assets used in this project related to flutter are taken directly from <a href="https://flutter.dev">Flutter.dev</a></p> -->
