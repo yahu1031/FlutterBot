@@ -1,31 +1,30 @@
-import 'package:nyxx_lavalink/lavalink.dart';
+import 'dart:async';
 
+import 'package:nyxx_interactions/nyxx_interactions.dart';
+
+import '../src/events/interations/button.interation.dart';
 import './../src/services/load_env.util.dart';
 import './../src/notifiers/login.notifier.dart';
 import './../src/notifiers/on_ready.notifier.dart';
 import './../src/notifiers/on_msg.notifier.dart';
-import './../src/services/logs.dart';
-import './../src/events/music.event.dart';
 import 'package:nyxx/nyxx.dart';
 import 'package:riverpod/riverpod.dart';
 
 Future<void> main() async {
-  ProviderContainer container = ProviderContainer();
-  // await AtBotEnv.loadEnv(container);
-  AtBotEnv env = container.read(atBotEnvProvider);
-  Snowflake clientID = env.clientID!;
-  Nyxx? client = await container.read(clientProvider.future);
-  Cluster cluster = Cluster(client!, clientID);
   try {
-    await cluster.addNode(NodeOptions(
-      host: 'lavalink.yahu1031.repl.co',
-      port: 443,
-      ssl: true,
-    ));
+    ProviderContainer container = ProviderContainer();
+    container.read(atBotEnvProvider);
+    INyxxWebsocket? client = await container.read(clientProvider.future);
+    await client?.connect();
+    // await Flutter.getData(container);
+    await ClientReady.onReadyEvent(client, container);
+    await MessageNotifier.onMsgEvent(client, container);
+
+    /// User interaction.
+    IInteractions.create(WebsocketInteractionBackend(client!))
+      ..events.onButtonEvent.listen(buttonInteraction)
+      ..syncOnReady();
   } on Exception catch (e) {
-    BotLogger.log(LogType.error, e.toString());
+    print(e.toString());
   }
-  await MusicEvent.onMusicEvent(cluster, container);
-  await ClientReady.onReadyEvent(client, container);
-  await MessageNotifier.onMsgEvent(client, container, cluster: cluster);
 }
