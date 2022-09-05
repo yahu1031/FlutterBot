@@ -26,10 +26,6 @@
 
 ## Get Started ##
 
-### Learn Node.JS :joy: ###
-
-Node.js is an open-source server environment, runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.), uses JavaScript on the server. Read about them here [Node.js](https://nodejs.org/en/docs/).
-
 ### Fork the project :fork_and_knife: ###
 
 Fork us to your repo and help us developing more better. Create a branch in the forked repo and work on the branch. Make [PR(Pull Request)](https://github.com/yahu1031/FlutterBot/pull) on what ever you worked on. PRs are most welcome.
