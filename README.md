@@ -12,7 +12,7 @@
   </a>
 </p>
 
-This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.js](https://discord.js.org/). This bot provides useful resources like docs, pub plugins/packages and API docs, flutterfire docs.
+This is a [**Flutter**](https://flutter.dev) Discord bot created with the [Nyxx Library](https://nyxx.l7ssha.xyz/). This bot provides useful resources like docs, pub plugins/packages and API docs, flutterfire docs.
 
 # Usage #
 
@@ -108,11 +108,11 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
 2) Create a `.env` file in the project root directory and paste this code given below.
 
     ```env
-    BOT_TOKEN=your bot token
+    BOT_TOKEN=<your bot token>
 
     PREFIX=!
 
-    MAINTAINERID=ID of the bot maintainer
+    CLIENT_ID=<ID of the bot OAuth2 client>
     ```
 
     > **Note:**
@@ -121,19 +121,18 @@ This is a [**Flutter**](https://flutter.dev) Discord bot created with [Discord.j
     >
     > 2) The links in the environment variables must not be disturbed.
 
-3) Get the dependency modules.
+3) Get the dependencies.
 
     ```sh
-    npm i
+    dart pub get
     ```
 
 4) Run the bot.
 
     ```sh
-    npm run start
+    dart ./bin/flutter_bot.dart
     ```
 
-> **NOTE:** If you want to follow eslint and markdownlint please do install plugins for them.
 
 ## 👤 Author ##
 
