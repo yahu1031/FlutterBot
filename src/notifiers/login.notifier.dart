@@ -33,7 +33,7 @@ class Client {
         cacheOptions: CacheOptions()
           ..memberCachePolicyLocation = CachePolicyLocation.all()
           ..userCachePolicyLocation = CachePolicyLocation.all(),
-        ignoreExceptions: false,
+        // ignoreExceptions: false,
       );
     } catch (e) {
       BotLogger.logln(LogType.error, 'Login Exception : ${e.toString()}');

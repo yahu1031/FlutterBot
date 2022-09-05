@@ -65,5 +65,5 @@ class MessageContent {
 
   /// Custom message with embed.
   static MessageBuilder embed(String message, EmbedBuilder embed) =>
-      _messgaeContent(message)..embeds.add(embed);
+      _messgaeContent(message)..embeds?.add(embed);
 }
