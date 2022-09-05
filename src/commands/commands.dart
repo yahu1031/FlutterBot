@@ -50,7 +50,7 @@ class Flutter {
       String widget, String property, ProviderContainer ref) async {
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
     for (Map<String, dynamic> propertyData in data!) {
-      if (propertyData['name'].toLowerCase() == property &&
+      if (propertyData['name'].toLowerCase() == property.toLowerCase() &&
           propertyData['qualifiedName']
               .toString()
               .toLowerCase()
