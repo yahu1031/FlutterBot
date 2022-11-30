@@ -1,14 +1,15 @@
 import 'dart:async';
 
-import 'package:nyxx_interactions/nyxx_interactions.dart';
-
-import '../src/events/interations/button.interation.dart';
-import './../src/services/load_env.util.dart';
-import './../src/notifiers/login.notifier.dart';
-import './../src/notifiers/on_ready.notifier.dart';
-import './../src/notifiers/on_msg.notifier.dart';
 import 'package:nyxx/nyxx.dart';
+import 'package:nyxx_interactions/nyxx_interactions.dart';
 import 'package:riverpod/riverpod.dart';
+
+import './../src/notifiers/login.notifier.dart';
+import './../src/notifiers/on_msg.notifier.dart';
+import './../src/notifiers/on_ready.notifier.dart';
+import './../src/services/load_env.util.dart';
+import '../src/events/interations/button.interation.dart';
+import '../src/services/logs.dart';
 
 Future<void> main() async {
   try {
@@ -25,6 +26,6 @@ Future<void> main() async {
       ..events.onButtonEvent.listen(buttonInteraction)
       ..syncOnReady();
   } on Exception catch (e) {
-    print(e.toString());
+    BotLogger.logln(LogType.error, e.toString());
   }
 }

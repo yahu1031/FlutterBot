@@ -25,7 +25,7 @@ class Flutter {
           json.decode(response.body).cast<Map<String, dynamic>>();
       ref.read(apiData.notifier).state = data;
     } catch (e) {
-      print(e);
+      BotLogger.logln(LogType.error, e.toString());
     }
   }
 
@@ -50,7 +50,8 @@ class Flutter {
       String widget, String property, ProviderContainer ref) async {
     List<Map<String, dynamic>>? data = ref.read(Flutter.apiData);
     for (Map<String, dynamic> propertyData in data!) {
-      if (propertyData['name'].toLowerCase() == property.toLowerCase() &&
+      if (propertyData['name'].toLowerCase() ==
+              '${widget.toLowerCase()}.${property.toLowerCase()}' &&
           propertyData['qualifiedName']
               .toString()
               .toLowerCase()
@@ -124,7 +125,7 @@ class Flutter {
           await data['packages'].cast<Map<String, dynamic>>();
       return pubList.isEmpty ? null : pubList;
     } catch (e) {
-      print(e);
+      BotLogger.logln(LogType.error, e.toString());
       return null;
     }
   }
@@ -144,7 +145,7 @@ class Flutter {
           await json.decode(response.body).cast<Map<String, dynamic>>();
       return data.isEmpty ? null : data;
     } catch (e) {
-      print(e);
+      BotLogger.logln(LogType.error, e.toString());
       return null;
     }
   }
@@ -160,7 +161,7 @@ class Flutter {
       Map<String, dynamic> data = json.decode(response.body);
       return data.isEmpty ? null : data;
     } catch (e) {
-      print(e);
+      BotLogger.logln(LogType.error, e.toString());
       return null;
     }
   }

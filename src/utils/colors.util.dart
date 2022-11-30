@@ -2,13 +2,16 @@ import 'package:nyxx/nyxx.dart';
 
 class Colors {
   /// Custom color for embeds
-  /// 
-  /// Usage: 
+  ///
+  /// Usage:
   /// ```dart
   /// embed.color = Colors.custom(0x000000)
   /// ```
   static DiscordColor custom(int colorCode) => DiscordColor.fromInt(colorCode);
   static Map<String, DiscordColor> colors = <String, DiscordColor>{
+    /// Basic color
+    'default': Colors.custom(0x46D1FD),
+
     /// Represents no color, or integer 0.
     'none': DiscordColor.none,
 

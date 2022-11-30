@@ -7,7 +7,8 @@ import 'package:riverpod/riverpod.dart';
 import '../utils/constants.util.dart';
 import 'logs.dart';
 
-final Provider<AtBotEnv> atBotEnvProvider = Provider<AtBotEnv>((_) => AtBotEnv().._loadEnv());
+final Provider<AtBotEnv> atBotEnvProvider =
+    Provider<AtBotEnv>((_) => AtBotEnv().._loadEnv());
 
 class AtBotEnv {
   String? _prefix;
@@ -28,7 +29,8 @@ class AtBotEnv {
       /// Check if file exist in the current working directory.
       if (File(BotConstants.envFile).existsSync()) {
         /// Load the env variables from the file.
-        load(BotConstants.envFile);
+        DotEnv env = DotEnv(includePlatformEnvironment: true)
+          ..load(<String>[BotConstants.envFile]);
 
         /// Set the prefix
         if (env['prefix'] == null || env['prefix']!.isEmpty) {
@@ -64,7 +66,7 @@ class AtBotEnv {
         Directory.current.path,
       );
     } catch (e) {
-      throw Exception('Exception : ' + e.toString());
+      throw Exception('Exception : $e');
     }
   }
 }
