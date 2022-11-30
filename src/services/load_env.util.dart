@@ -26,6 +26,8 @@ class AtBotEnv {
   /// If the file is not found, it will throw an exception.
   Future<void> _loadEnv() async {
     try {
+      BotLogger.log(LogType.info, Platform.environment['prefix']);
+
       /// Check if file exist in the current working directory.
       if (File(BotConstants.envFile).existsSync()) {
         /// Load the env variables from the file.
