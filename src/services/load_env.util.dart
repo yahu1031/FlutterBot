@@ -56,13 +56,17 @@ class AtBotEnv {
           _clientID = env['botID']!.toSnowflake();
         }
       } else {
-        /// If the file is not found, throw FileSystemException.
-        // throw const FileSystemException();
-        BotLogger.logln(LogType.error, 'Missing `.env` file');
+        //   /// If the file is not found, throw FileSystemException.
+        //   // throw const FileSystemException();
+        BotLogger.logln(
+            LogType.error, 'Missing `.env` file | Fetching from env');
+        _prefix = Platform.environment['prefix'];
+        _token = Platform.environment['token'];
+        _clientID = Platform.environment['botID']!.toSnowflake();
       }
     } on FileSystemException catch (_) {
       /// Throw an exception if the file is not found.
-      BotLogger.logln(LogType.error, 'Missing `.env` file');
+      BotLogger.logln(LogType.error, 'Missing `.env` file | Fetching from env');
       _prefix = Platform.environment['prefix'];
       _token = Platform.environment['token'];
       _clientID = Platform.environment['botID']!.toSnowflake();
