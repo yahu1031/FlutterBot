@@ -57,7 +57,8 @@ class AtBotEnv {
         }
       } else {
         /// If the file is not found, throw FileSystemException.
-        throw const FileSystemException();
+        // throw const FileSystemException();
+        BotLogger.logln(LogType.error, 'Missing `.env` file');
       }
     } on FileSystemException catch (_) {
       /// Throw an exception if the file is not found.
