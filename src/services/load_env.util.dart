@@ -26,8 +26,6 @@ class AtBotEnv {
   /// If the file is not found, it will throw an exception.
   Future<void> _loadEnv() async {
     try {
-      BotLogger.log(LogType.info, Platform.environment['prefix']);
-
       /// Check if file exist in the current working directory.
       if (File(BotConstants.envFile).existsSync()) {
         /// Load the env variables from the file.
@@ -64,10 +62,10 @@ class AtBotEnv {
       }
     } on FileSystemException catch (_) {
       /// Throw an exception if the file is not found.
-      throw FileSystemException(
-        'File `${BotConstants.envFile}` not found.',
-        Directory.current.path,
-      );
+      BotLogger.logln(LogType.error, 'Missing `.env` file');
+      _prefix = Platform.environment['prefix'];
+      _token = Platform.environment['token'];
+      _clientID = Platform.environment['botID']!.toSnowflake();
     } catch (e) {
       throw Exception('Exception : $e');
     }
